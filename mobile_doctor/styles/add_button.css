@@ -1,0 +1,20 @@
+#add-button {
+    background-color: var(--color-main);
+    width: 65px;
+    height: 65px;
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+}
+
+#add-button > .icon {
+    width: 65px;
+    height: 65px;
+}
