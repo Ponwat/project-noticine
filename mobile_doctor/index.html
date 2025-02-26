@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- import -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- import -->
+
+    <link rel="stylesheet" href="style.css" />
     <title>Noticine Template</title>
-</head>
-<body>
-    Template
-</body>
+  </head>
+  <body>
+    <div component="title-bar" class="flex w-[412] h-[80] bg-(--red)" id="title-bar">
+      <div class="flex" id="title-bar-inner-frame">
+        <div class="icon" id="settings-icon">Settings</div>
+        <h1 class="font-bold">Title</h1>
+        <div class="icon" id="user-icon">User Icon</div>
+      </div>
+    </div>
+  </body>
 </html>
