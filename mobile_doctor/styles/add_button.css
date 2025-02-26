@@ -12,6 +12,12 @@
     justify-content: center;
 
     border-radius: 50%;
+
+    transition: opacity 0.2s;
+}
+
+#add-button:hover {
+    opacity: 0.8;
 }
 
 #add-button > .icon {
