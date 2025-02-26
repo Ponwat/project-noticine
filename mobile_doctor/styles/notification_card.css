@@ -1,0 +1,31 @@
+.notification-card {
+    background-color: var(--color-white);
+    width: 375px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border: var(--color-secondary) 4px solid;
+    border-radius: 15px;
+}
+
+.notification-card > .template-name {
+    color: var(--color-secondary);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.notification-card > .row {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.notification-card > .row > .description-label {
+    color: var(--color-main);
+}
+
+.notification-card > .row > .description {
+    color: var(--color-black);
+}

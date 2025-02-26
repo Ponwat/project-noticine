@@ -11,27 +11,45 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- import -->
+    <!-- /import -->
 
+    <!-- styles -->
     <link rel="stylesheet" href="./styles/all_style.css">
     <link rel="stylesheet" href="./styles/variables.css">
+
+    <link rel="stylesheet" href="./styles/title_bar.css">
+    <link rel="stylesheet" href="./styles/nav_bar.css">
+    <link rel="stylesheet" href="./styles/content_section.css">
+    <link rel="stylesheet" href="./styles/notification_card.css">
+    <!-- /styles -->
+
     <title>Noticine Template</title>
   </head>
   <body>
     <!-- title-bar -->
-    <link rel="stylesheet" href="./styles/title_bar.css">
     <div id="title-bar">
       <div class="inner">
-        <!-- icon color is --color-white but want --color-light please fix svg -->
         <img src="/icons/setting.svg" alt="setting-icon" class="icon">
-        <div class="title">Title</div>
+        <div class="title">Noticine</div>
         <img src="/icons/profile.svg" alt="profile-icon" class="icon">
-      </img>
+      </div>
     </div>
     <!-- /title-bar -->
-
+    <!-- content -->
+    <section id="content">
+      <!-- notification-card -->
+      <div class="notification-card">
+        <span class="template-name">Template Name</span>
+        <div class="row"><span class="description-label">Description: </span><span class="description">Take after meal</span></div>
+      </div>
+      <div class="notification-card">
+        <span class="template-name">Para</span>
+        <div class="row"><span class="description-label">Description: </span><span class="description">Take after meals</span></div>
+      </div>
+      <!-- /notification-card -->
+    </section>
+    <!-- /content -->
     <!-- nav-bar-->
-    <link rel="stylesheet" href="./styles/nav_bar.css">
     <div id="nav-bar">
         <div class="inner">
             <div class="button">
