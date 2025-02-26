@@ -1,0 +1,13 @@
+* {
+    font-family: 'Inter';
+    margin: 0;
+    padding: 0;
+}
+
+#title-bar {
+    display: flex;
+    background-color: var(--color-main);
+    height: 80px;
+    width: 100vw;
+    border-radius: 0 0 15px 15px;
+}
