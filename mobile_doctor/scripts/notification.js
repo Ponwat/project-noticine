@@ -6,6 +6,10 @@ if ('Notification' in window && 'serviceWorker' in navigator) {
     alert("Push notifications are NOT supported.");
 }
 
+navigator.serviceWorker.register('./scripts/sw.js')
+    .then(reg => console.log('Service Worker Registered!', reg))
+    .catch(err => console.log('Service Worker Registration Failed!', err));
+
 
 const requsetButton = document.getElementById("request-permission-button");
 requsetButton.onclick = () => {
@@ -14,12 +18,11 @@ requsetButton.onclick = () => {
     }
     var promise = Notification.requestPermission();
     promise.then((permission) => {
-        alert(permission);
-        // if(permission !="granted"){
-        //     alert("Permission not granted");
-        //     return;
-        // }
-        // alert("Permission granted");
+        if(permission !="granted"){
+            alert("Permission not granted");
+            return;
+        }
+        alert("Permission granted");
     })
 }
 
