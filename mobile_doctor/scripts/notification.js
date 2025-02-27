@@ -30,5 +30,5 @@ requsetButton.onclick = () => {
 const button = document.getElementById("notification-button");
 button.onclick = function() {
     const notification = new Notification("Hello, World!");
-    console.log("Notification sent");
+    console.log(notification);
 }
