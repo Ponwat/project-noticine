@@ -29,3 +29,41 @@
     font-weight: 600;
     color: var(--color-secondary);
 }
+
+.medicine-detail > .description {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.medicine-detail > .description > .label {
+    color: var(--color-main);
+}
+
+.medicine-detail > .description > .value {
+    color: var(--color-black);
+}
+
+.medicine-detail > .qr-code {
+    width: 200px;
+    height: 200px;
+}
+
+.medicine-detail > .medicine-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-main);
+}
+
+.medicine-detail > .medicine-list {
+    list-style-position: inside;
+}
+
+.medicine-detail > .medicine-list > .medicine-name::marker {
+    color: var(--color-main);
+}
+
+.medicine-detail > .medicine-list > .medicine-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-black);
+}
