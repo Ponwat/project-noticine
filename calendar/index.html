@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="calendar">
+            <div class="month">
+                <button class="prev-month">◀</button>
+                <div class="date">December 2022</div>
+                <button class="next-month">▶</button>
+            </div>
+            <div class="weekdays">
+                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+            </div>
+            <div class="days"></div>
+        </div>
+        <div class="events">
+            <h2 id="event-date"></h2>
+            <div id="event-list"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+:root {
+    --primary-color: #D9D9D9;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e2e1dc;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 350px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar {
+    text-align: center;
+}
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.prev-month, .next-month {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.weekdays {
+    display: grid;
+    font-weight: bold;
+    margin-bottom: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-left: -5px;
+
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day  {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    background: var(--primary-color);
+}
+
+
+.events {
+    margin-top: 30px;
+    text-align: left;
+    border-radius: 15px; /* เพิ่มขอบมุมโค้งตามภาพ */
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1); /* ปรับ drop shadow ให้ดูเป็นธรรมชาติ */
+    padding: 15px; /* เพิ่ม padding ให้เท่ากับขอบมุม */
+}
+
+.events h2 {
+    font-size: 1.1rem;
+    margin-bottom: 15px; /* เพิ่มระยะห่างจากหัวข้อ */
+}
+
+.events div {
+    padding: 10px; /* เพิ่ม padding ให้ดูโปร่งขึ้น */
+    background-color: #f0f0f0; /* ปรับสีเทาอ่อนให้ใกล้เคียงภาพ */
+    border-radius: 8px; /* เพิ่มขอบมุมโค้งเล็กน้อย */
+    margin-bottom: 8px; /* เพิ่มระยะห่างระหว่างรายการ */
+    display: grid; /* ใช้ grid layout เพื่อจัดรูปแบบให้เหมือนตาราง */
+    grid-template-columns: 1fr 3fr; /* กำหนดคอลัมน์ 2 คอลัมน์ */
+    align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+}
+
+.events div:last-child {
+    border-bottom: none; /* ลบเส้นขอบด้านล่างของรายการสุดท้าย */
+    margin-bottom: 0; /* ลบ margin ด้านล่างของรายการสุดท้าย */
+}
+
+.events div:nth-child(odd) {
+    background-color: #e8e8e8; /* สลับสีแถว */
+}
+
+.events div:nth-child(even) {
+    background-color: #f0f0f0;
+}
