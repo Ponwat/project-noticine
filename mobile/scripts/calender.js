@@ -27,9 +27,22 @@ const months = [
 // ตัวอย่างข้อมูลเหตุการณ์ (สามารถปรับเปลี่ยนได้ตามต้องการ)
 const events = {
   "2025-01-01": [
-    { time: "08:00", description: "Medicine name 1, 1 pill, Take after m..." },
-    { time: "12:00", description: "Medicine name 1, 1 pill, Take after m..." },
-    { time: "16:00", description: "Medicine name 1, 1 pill, Take after m..." },
+    {
+      time: "08:00",
+      description: [
+        "Medicine name 1, 1 pill, Take after m...",
+        "Medicine name 1, 1 pill, Take after m...",
+        "Medicine name 1, 1 pill, Take after m...",
+      ],
+    },
+    {
+      time: "12:00",
+      description: "Medicine name 1, 1 pill, Take after m...",
+    },
+    {
+      time: "16:00",
+      description: "Medicine name 1, 1 pill, Take after m...",
+    },
   ],
   "2025-01-05": [
     { time: "10:00", description: "Meeting with team" },
@@ -46,23 +59,44 @@ function initCalendar() {
   const day = firstDay.getDay();
   const nextDays = 7 - lastDay.getDay() - 1;
 
-  date.innerHTML = `${months[month]} ${year}`;
-  let days = "";
+  const selectedDate = new Date(year, month, day);
+
+  $("#date").text(`${months[month]} ${year}`);
+  $(".days").empty();
 
   for (let x = day; x > 0; x--) {
-    days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
+    $(".days").append(`<div class="day prev-date">${prevDays - x + 1}</div>`);
   }
 
   for (let i = 1; i <= lastDate; i++) {
-    days += `<div class="day">${i}</div>`;
+    const formattedDate = `${selectedDate.getFullYear()}-${(
+      selectedDate.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${i.toFixed(0).padStart(2, "0")}`;
+    if (events[formattedDate]) {
+      //   if (events[formattedDate].check == true) {
+      //     $(".days").append(`<div class="day true">${i}</div>`);
+      //   } else if (events[formattedDate].check == false) {
+      //     $(".days").append(`<div class="day false">${i}</div>`);
+      //   } else {
+      //     $(".days").append(`<div class="day event">${i}</div>`);
+      // }
+      $(".days").append(`<div class="day event">${i}</div>`);
+    } else {
+      $(".days").append(`<div class="day">${i}</div>`);
+    }
   }
 
   for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="day next-date">${j}</div>`;
+    $(".days").append(`<div class="day next-date">${j}</div>`);
   }
 
-  daysContainer.innerHTML = days;
-  addDayClickListener();
+  $(".day").click(function (e) {
+    $(".day").removeClass("active");
+    $(e.target).addClass("active");
+    showEvents(e.target.textContent);
+  });
 }
 
 function prevMonth() {
@@ -83,20 +117,14 @@ function nextMonth() {
   initCalendar();
 }
 
-prevMonthBtn.addEventListener("click", prevMonth);
-nextMonthBtn.addEventListener("click", nextMonth);
+onload = function () {
+  initCalendar();
+};
 
-function addDayClickListener() {
-  document.querySelectorAll(".day").forEach((day) => {
-    day.addEventListener("click", (e) => {
-      document
-        .querySelectorAll(".day")
-        .forEach((d) => d.classList.remove("active"));
-      e.target.classList.add("active");
-      showEvents(e.target.textContent);
-    });
-  });
-}
+$(document).ready(function () {
+  $("#prev-month").click(prevMonth);
+  $("#next-month").click(nextMonth);
+});
 
 function showEvents(day) {
   const selectedDate = new Date(year, month, day);
@@ -105,15 +133,16 @@ function showEvents(day) {
   )
     .toString()
     .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
-  eventDate.textContent = `${months[month]} ${day}, ${year}`;
-  eventList.innerHTML = "";
+
+  $("#event-date").text(`${months[month]} ${day} ${year}`);
+  $("#event-list").empty();
   if (events[formattedDate]) {
     events[formattedDate].forEach((event) => {
-      eventList.innerHTML += `<div>${event.time} - ${event.description}</div>`;
+      $("#event-list").append(
+        `<div>${event.time} - ${event.description}</div>`
+      );
     });
   } else {
-    eventList.innerHTML = "No events for this day.";
+    $("#event-list").append(`<div>No events for this day.</div>`);
   }
 }
-
-initCalendar();

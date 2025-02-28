@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    <link rel="stylesheet" href="./styles/title_bar.css">
+    <link rel="stylesheet" href="./styles/nav_bar.css">
+    <link rel="stylesheet" href="./styles/add_button.css">
+    <link rel="stylesheet" href="./styles/content_section.css">
+    <link rel="stylesheet" href="./styles/notification_card.css">
+    <link rel="stylesheet" href="./styles/date_selection.css">
+    <link rel="stylesheet" href="./styles/notification_content.css">
+    <link rel="stylesheet" href="./styles/calender.css">
+    <link rel="stylesheet" href="./styles/event.css">
+    <!-- /styles -->
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- /script -->
+
+    <title>Noticine</title>
+</head>
+
+<body>
+    <!-- title-bar -->
+    <div id="title-bar">
+        <div class="inner">
+            <img src="/icons/setting.svg" alt="setting-icon" class="icon">
+            <div class="title">Noticine</div>
+            <img src="/icons/profile.svg" alt="profile-icon" class="icon">
+        </div>
+    </div>
+    <!-- /title-bar -->
+    <!-- add-button -->
+    <div id="add-button">
+        <img src="/icons/plus.svg" alt="add-icon" class="icon">
+    </div>
+    <!-- /add-button -->
+    <!-- nav-bar-->
+    <div id="nav-bar">
+        <div class="inner">
+            <div class="button">
+                <img src="/icons/home.svg" alt="" class="icon">
+                <div class="label">Home</div>
+            </div>
+            <div class="button">
+                <img src="/icons/calendar.svg" alt="" class="icon">
+                <div class="label">Calendar</div>
+            </div>
+            <div class="button">
+                <img src="/icons/gamepad.svg" alt="" class="icon">
+                <div class="label">Game</div>
+            </div>
+        </div>
+    </div>
+    <!-- /nav-bar-->
+    <!-- date-selection -->
+    <div id="date-selection">
+        <div class="inner">
+            <button id="prev-month" class="arrow-btn"><img src="/icons/arrow_left.svg" alt="arrow_left" class=""></button>
+            <div id="date" class="date">January 2025</div>
+            <button id="next-month" class="arrow-btn"><img src="/icons/arrow_right.svg" alt="arrow_right" class=""></button>
+        </div>
+    </div>
+    <!-- /date-selection -->
+    <!-- calender -->
+    <div id="calender">
+        <div class="inner">
+            <div class="weekdays">
+                <div>S</div>
+                <div>M</div>
+                <div>T</div>
+                <div>W</div>
+                <div>T</div>
+                <div>F</div>
+                <div>S</div>
+            </div>
+            <div class="days"></div>
+        </div>
+    </div>
+    <!-- /calender -->
+    <!-- events -->
+    <div id="events">
+        <div class="inner">
+            <h4 id="event-date"></h4>
+            <div id="event-list"></div>
+        </div>
+    </div>
+    <!-- /events -->
+    <!-- script -->
+    <script src="./scripts/calender.js"></script>
+    <!-- /script -->
+</body>
+
+</html>
