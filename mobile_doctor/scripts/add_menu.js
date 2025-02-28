@@ -1,4 +1,5 @@
 const add_menu = document.getElementById("add-menu");
-add_menu.onclick = () => {
+const add_button = document.getElementById("add-button");
+add_button.onclick = () => {
     add_menu.classList.toggle("open");
 }
