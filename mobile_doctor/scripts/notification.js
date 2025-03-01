@@ -28,7 +28,9 @@ requsetButton.onclick = () => {
 
 
 const button = document.getElementById("notification-button");
+const label = document.getElementById("label");
 button.onclick = function() {
     const notification = new Notification("Hello, World!");
-    alert(notification);
+    // alert(notification);
+    label.innerText = notification; 
 }
