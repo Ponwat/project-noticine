@@ -7,9 +7,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const validUsers = {
         "Pikulkaew": "narukteesud",
         "kanechin": "adminkub",
-        "spyhere": "nahngosud",
+        "spyhere": "nahn45gosud",
         "buddy": "chonbureeboy",
-        "armin49": "leksudsud"
+        "armin49": "Inumarai595"
     };
 
     if (validUsers[username] === password) {
