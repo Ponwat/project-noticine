@@ -32,7 +32,8 @@ const button = document.getElementById("notification-button");
 button.onclick = function() {
     alert("Button clicked");
     if (Android != undefined) {
-        alert(Android)
+        alert(Android);
+        Android.hello("Hello");
     }
     // const notification = new Notification("Hello, World!");
     // // alert(notification);
