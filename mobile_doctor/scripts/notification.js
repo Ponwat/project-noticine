@@ -22,12 +22,13 @@ const time_input = document.getElementById("input");
 
 const button = document.getElementById("notification-button");
 button.onclick = function() {
-    console.log(time_input)
+    time = time_input.value.split(":");
+    console.log(time)
     if (Android) {
         alert(Android);
-        Android.hello("Hello");
+        // Android.hello("Hello");
         time = time_input.value.split(":");
 
-        Android.log_time(time[0], time[1]);
+        Android.log_time(parseInt(time[0]), parseInt(time[1]));
     }
 }
