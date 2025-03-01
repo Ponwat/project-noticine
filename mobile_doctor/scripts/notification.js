@@ -26,5 +26,8 @@ button.onclick = function() {
     if (Android) {
         alert(Android);
         Android.hello("Hello");
+        time = time_input.value.split(":");
+
+        Android.log_time(time[0], time[1]);
     }
 }
