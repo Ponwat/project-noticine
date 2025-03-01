@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container inter-body-text">
+      <!-- .center-inner > img {
+        position: absolute;
+       } -->
+      <div class="profile-pencil">
+        <img class="profile-image" src="/icons/profile.svg" alt="profile-image"  />
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+      <div class="details">
+        <h2>
+          <input type="text" placeholder="Name" class="name" />
+          <img src="/icons/pencil.svg" alt="edit-name" class="edit-name" />
+        </h2>
+        <div class="row">
+          <p class="genderbox"> 
+            <span class="left">Gender: 
+                <input type="text" class="gender" />
+            </span> 
+            <span class="right">
+                <img class="pencilgender" src="/icons/pencil.svg" alt="edit-gender" class="edit-gender" />
+            </span>
+        </p>
+          <span class="agebox">
+            <span>Age: <input type="text" class="age" /> years old
+                <img src="/icons/pencil.svg" alt="edit-age" class="edit-age"/>
+            </span>
+          </span>
+          
+        </div>
+        <div class="row">
+          <span class="weightbox">
+            Weight: <input type="text" class="weight" />    kg
+            <img class="pencilweight"
+              src="/icons/pencil.svg"
+              alt="edit-weight"
+              class="edit-weight"
+            />
+          </span>
+          <p class="heightbox">
+            Height: <input type="text" class="height" /> cm
+            <img
+              src="/icons/pencil.svg"
+              alt="edit-height"
+              class="edit-height"
+            />
+          </p>
+        </div>
+        <p>
+          Underlying Diseases: <input type="text" class="disease" />
+          <img
+            src="/icons/pencil.svg"
+            alt="edit-disease"
+            class="edit-disease"
+          />
+        </p>
+        <p>
+          Drug Allergy: <input type="text" class="allergy" />
+          <img
+            src="/icons/pencil.svg"
+            alt="edit-allergy"
+            class="edit-allergy"
+          />
+        </p>
+        <p>
+          Tel: <input type="text" class="tel" />
+          <img src="/icons/pencil.svg" alt="edit-tel" class="edit-tel" />
+        </p>
+        <div class="buttons">
+          <button class="save">Save</button>
+          <button class="cancel">Cancel</button>
+          <button class="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

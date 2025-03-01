@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme
+{
+    --color-bgmain: #7EA9FF;
+}
+/* เพิ่ม CSS เพื่อให้แถบนำทางอยู่ด้านล่างสุด */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ให้ body สูงเต็ม viewport */
+}
+.content {
+    flex-grow: 1; /* ให้ content ขยายจนเต็มพื้นที่ว่าง */
+}
+.navbar {
+    background-color: #7EA9FF; /* สีพื้นหลังแถบนำทาง */
+    position: fixed; /* กำหนดให้แถบนำทางอยู่ด้านล่างสุดเสมอ */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0; /* เพิ่มระยะห่างภายในแถบนำทาง */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top-left-radius: 0; /* เพิ่มมุมโค้งมนด้านบนซ้าย */
+    border-top-right-radius: 0; /* เพิ่มมุมโค้งมนด้านบนขวา */
+}
+.navbar div {
+    text-align: center;
+}
