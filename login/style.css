@@ -64,7 +64,7 @@ input::placeholder {
 .button-group {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .login-btn, .register-btn {
@@ -72,7 +72,6 @@ input::placeholder {
     border-radius: 25px;
     font-weight: bold;
     cursor: pointer;
-    margin: 0 5px;
 }
 
 .login-btn {
