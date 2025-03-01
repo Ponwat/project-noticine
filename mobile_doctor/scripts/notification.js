@@ -27,15 +27,14 @@ requsetButton.onclick = () => {
 }
 
 
-const button = document.getElementById("notification-button");
 const label = document.getElementById("label");
+const button = document.getElementById("notification-button");
 button.onclick = function() {
-    const notification = new Notification("Hello, World!");
-    // alert(notification);
-    label.innerText = notification; 
-}
-
-if (Android != undefined) {
-    alert(Android);
-    
+    alert("Button clicked");
+    if (Android != undefined) {
+        alert(Android)
+    }
+    // const notification = new Notification("Hello, World!");
+    // // alert(notification);
+    // label.innerText = notification; 
 }
