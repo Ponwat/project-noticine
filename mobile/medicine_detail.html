@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    <!-- medicine-detail -->
+    <link rel="stylesheet" href="./styles/medicine_detail.css">
+    <!-- /medicine-detail -->
+
+    <!-- /styles -->
+     <!-- /styles -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- /script -->
+
+    <title>Noticine Template</title>
+</head>
+
+<body>
+    <!-- medicine-detail -->
+    <div class="medicine-detail">
+        <img src="/icons/bold_plus.svg" id="medicine-detail-close" class="close-button">
+        <div class="info-block">
+            <img class="medicine-img"
+                src="https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
+                alt="medicine_img">
+            <div class="info">
+                <span class="title" id="medicine-detail-title">Para</span>
+                <div class="row">
+                    <span class="title-label">Quantity: </span>
+                    <span class="block-text" id="medicine-detail-quentity">1 pill</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Note: </span>
+                    <span class="normal-text" id="medicine-detail-note">Take after meals.</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="info-block">
+            <div class="info">
+                <div class="row" id="medicine-detail-time">
+                    <span class="title-label">time: </span>
+                    <span class="block-text">08:00</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Frequency: </span>
+                    <span class="normal-text" id="medicine-detail-frequency">Everyday</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Duration: </span>
+                    <span class="normal-text" id="medicine-detail-duration">Until the symptoms improve</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Start Date: </span>
+                    <span class="normal-text" id="medicine-detail-startdate">1 January 2025</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="info-block">
+            <div class="info">
+                <div class="row">
+                    <span class="title-label">Date: </span>
+                    <span class="normal-text" id="medicine-detail-todaydate">1 January 2025</span>
+                </div>
+                <div class="row">
+                    <span class="normal-text">Have you take this medicine today?</span>
+                </div>
+            </div>
+        </div>
+        <div class="select-button">
+            <button class="arrow-btn" id="medicine-detail-true">
+                <img src="/icons/checkbox_true.svg" alt="arrow_right" class="icon">
+                <span class="checkbox-true">Yes, I have taken this medicine.</span>
+            </button>
+            <button class="arrow-btn" id="medicine-detail-false">
+                <img src="/icons/checkbox_false.svg" alt="arrow_right" class="icon">
+                <span>No, I don't take this medicine.</span>
+            </button>
+        </div>
+    </div>
+    <!-- /medicine-detail -->
+
+    <!-- script -->
+    <script src="./scripts/medicine_detail.js"></script>
+    <!-- /script -->
+</body>
+
+</html>

@@ -19,12 +19,15 @@
 
     <link rel="stylesheet" href="./styles/title_bar.css">
     <link rel="stylesheet" href="./styles/nav_bar.css">
-    <link rel="stylesheet" href="./styles/add_button.css">
     <link rel="stylesheet" href="./styles/content_section.css">
     <link rel="stylesheet" href="./styles/notification_card.css">
     <link rel="stylesheet" href="./styles/date_selection.css">
     <link rel="stylesheet" href="./styles/notification_content.css">
+    <link rel="stylesheet" href="./styles/add_menu.css">
+    <link rel="stylesheet" href="./styles/medicine_detail.css">
     <!-- /styles -->
+
+    <!-- script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- /script -->
 
@@ -35,51 +38,127 @@
     <!-- title-bar -->
     <div id="title-bar">
         <div class="inner">
-            <img src="/icons/setting.svg" alt="setting-icon" class="icon">
+            <img id="setting" src="/icons/setting.svg" alt="setting-icon" class="icon">
             <div class="title">Noticine</div>
-            <img src="/icons/profile.svg" alt="profile-icon" class="icon">
+            <img id="profile" src="/icons/profile.svg" alt="profile-icon" class="icon">
         </div>
     </div>
     <!-- /title-bar -->
-    <!-- add-button -->
-    <div id="add-button">
-        <img src="/icons/plus.svg" alt="add-icon" class="icon">
-    </div>
-    <!-- /add-button -->
     <!-- nav-bar-->
     <div id="nav-bar">
         <div class="inner">
-            <div class="button">
+            <div class="button" id="home">
                 <img src="/icons/home.svg" alt="" class="icon">
                 <div class="label">Home</div>
             </div>
-            <div class="button">
+            <div class="button" id="calendar">
                 <img src="/icons/calendar.svg" alt="" class="icon">
                 <div class="label">Calendar</div>
             </div>
-            <div class="button">
+            <div class="button" id="game">
                 <img src="/icons/gamepad.svg" alt="" class="icon">
                 <div class="label">Game</div>
             </div>
         </div>
     </div>
     <!-- /nav-bar-->
+    <!-- add-button -->
+    <div id="add-menu">
+        <div id="add-medicine" class="menu-button">
+            <img src="/icons/pill.svg" alt="" srcset="">
+            <div class="label">Add Medicine</div>
+        </div>
+        <div id="scan-template" class="menu-button">
+            <img src="/icons/qr_code_black.svg" alt="" srcset="">
+            <div class="label">Scan Template</div>
+        </div>
+        <div id="add-button">
+            <img src="/icons/plus.svg" alt="add-icon" class="icon">
+        </div>
+    </div>
+    <!-- /add-button -->
     <!-- date-selection -->
     <div id="date-selection">
         <div class="inner">
-            <button class="arrow-btn"><img src="/icons/arrow_left.svg" alt="arrow_left" class=""></button>
-            <div class="date">Wednesday, January 1 2025</div>
-            <button class="arrow-btn"><img src="/icons/arrow_right.svg" alt="arrow_right" class=""></button>
+            <button id="prevDay" class="arrow-btn"><img src="/icons/arrow_left.svg" alt="arrow_left" class=""></button>
+            <div id="date" class="date">Wednesday, January 1 2025</div>
+            <button id="nextDay" class="arrow-btn"><img src="/icons/arrow_right.svg" alt="arrow_right"
+                    class=""></button>
         </div>
     </div>
     <!-- /date-selection -->
+
+    <!-- medicine-detail -->
+    <!-- <div class="medicine-detail">
+        <img src="/icons/bold_plus.svg" id="medicine-detail-close" class="close-button">
+        <div class="info-block">
+            <img class="medicine-img"
+                src="https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
+                alt="medicine_img">
+            <div class="info">
+                <span class="title" id="medicine-detail-title">Para</span>
+                <div class="row">
+                    <span class="title-label">Quantity: </span>
+                    <span class="block-text" id="medicine-detail-quentity">1 pill</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Note: </span>
+                    <span class="normal-text" id="medicine-detail-note">Take after meals.</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="info-block">
+            <div class="info">
+                <div class="row" id="medicine-detail-time">
+                    <span class="title-label">time: </span>
+                    <span class="block-text">08:00</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Frequency: </span>
+                    <span class="normal-text" id="medicine-detail-frequency">Everyday</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Duration: </span>
+                    <span class="normal-text" id="medicine-detail-duration">Until the symptoms improve</span>
+                </div>
+                <div class="row">
+                    <span class="title-label">Start Date: </span>
+                    <span class="normal-text" id="medicine-detail-startdate">1 January 2025</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="info-block">
+            <div class="info">
+                <div class="row">
+                    <span class="title-label">Date: </span>
+                    <span class="normal-text" id="medicine-detail-todaydate">1 January 2025</span>
+                </div>
+                <div class="row">
+                    <span class="normal-text">Have you take this medicine today?</span>
+                </div>
+            </div>
+        </div>
+        <div class="select-button">
+            <button class="arrow-btn" id="medicine-detail-true">
+                <img src="/icons/checkbox_true.svg" alt="arrow_right" class="icon">
+                <span class="checkbox-true">Yes, I have taken this medicine.</span>
+            </button>
+            <button class="arrow-btn" id="medicine-detail-false">
+                <img src="/icons/checkbox_false.svg" alt="arrow_right" class="icon">
+                <span>No, I don't take this medicine.</span>
+            </button>
+        </div>
+    </div> -->
+    <!-- /medicine-detail -->
     <!-- content -->
     <section id="content">
         <div class="notification-content">
             <h4 id="notification-time">08:00</h4>
             <!-- notification-card -->
             <div class="notification-card">
-                <div class="info-block">
+                <div class="info-block" id="#notification-card">
                     <img class="medicine-img"
                         src="https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
                         alt="medicine_img">
@@ -95,11 +174,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="action">
-                    <button class="arrow-btn"><img src="/icons/checkbox_true.svg" alt="arrow_right"
-                            class="icon"></button>
-                    <button class="arrow-btn"><img src="/icons/checkbox_false.svg" alt="arrow_right"
-                            class="icon"></button>
+                <div class="select-button">
+                    <button class="arrow-btn" id="medicine-detail-true"><img src="/icons/checkbox_true.svg"
+                            alt="arrow_right" class="icon"></button>
+                    <button class="arrow-btn" id="medicine-detail-false"><img src="/icons/checkbox_false.svg"
+                            alt="arrow_right" class="icon"></button>
                 </div>
             </div>
             <!-- /notification-card -->
@@ -107,7 +186,11 @@
     </section>
     <!-- /content -->
     <!-- script -->
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/date_selection.js"></script>
     <script src="./scripts/notification_content.js"></script>
+    <script src="./scripts/add_menu.js"></script>
+    <script src="./scripts/medicine_detail.js"></script>
     <!-- /script -->
 </body>
 

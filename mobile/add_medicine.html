@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+         <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    <link rel="stylesheet" href="./styles/add_medicine.css">
+        <!-- /styles -->
     <title>ADD Medication Form</title>
-    <link rel="stylesheet" href="./styles/add-medicine.css">
 </head>
 <body>
     <div class="container">
         <!-- -------------------------------- IMAGE SECTION ------------------------------------------ -->
         <div class="image-container">
-            <img id="medImage" src="add-image.png" alt="Medication">
-            <input type="file" id="imageInput" accept="image/*">
+            <img id="medImage" src="../images/add_image.png" alt="Medication">
+            <input  type="file" id="imageInput" accept="image/*">
         </div>
-
-
         <!-- -------------------------------- Medication Name SECTION ------------------------------------------ -->
         <label>Medication Name</label>
         <input type="text" id="medName" placeholder="Enter medication name">
@@ -52,7 +63,8 @@
 
         <div class="time-dose-container">
             <label class="label-time">Time</label>
-            <!-- <label class="label-dose">Dose</label> -->
+            <label class="label-dose">Dose</label>
+            <label class="label-none"></label>
         </div>
 
         <div class="time-list" id="timeList"></div>
@@ -117,7 +129,7 @@
         </div>
     </div>
     
-    <script src="add-medicine.js"></script>
+    <script src="./scripts/add_medicine.js"></script>
 </body>
 </html>
 

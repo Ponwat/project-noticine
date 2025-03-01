@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./styles/notification_card.css">
     <link rel="stylesheet" href="./styles/date_selection.css">
     <link rel="stylesheet" href="./styles/notification_content.css">
-    <link rel="stylesheet" href="./styles/calender.css">
+    <link rel="stylesheet" href="./styles/calendar.css">
     <link rel="stylesheet" href="./styles/event.css">
     <!-- /styles -->
     <!-- script -->
@@ -35,38 +35,33 @@
 </head>
 
 <body>
-    <!-- title-bar -->
-    <div id="title-bar">
-        <div class="inner">
-            <img src="/icons/setting.svg" alt="setting-icon" class="icon">
-            <div class="title">Noticine</div>
-            <img src="/icons/profile.svg" alt="profile-icon" class="icon">
-        </div>
-    </div>
-    <!-- /title-bar -->
-    <!-- add-button -->
-    <div id="add-button">
-        <img src="/icons/plus.svg" alt="add-icon" class="icon">
-    </div>
-    <!-- /add-button -->
-    <!-- nav-bar-->
-    <div id="nav-bar">
-        <div class="inner">
-            <div class="button">
-                <img src="/icons/home.svg" alt="" class="icon">
-                <div class="label">Home</div>
-            </div>
-            <div class="button">
-                <img src="/icons/calendar.svg" alt="" class="icon">
-                <div class="label">Calendar</div>
-            </div>
-            <div class="button">
-                <img src="/icons/gamepad.svg" alt="" class="icon">
-                <div class="label">Game</div>
+        <!-- title-bar -->
+        <div id="title-bar">
+            <div class="inner">
+                <img id="setting" src="/icons/setting.svg" alt="setting-icon" class="icon">
+                <div class="title">Noticine</div>
+                <img id="profile" src="/icons/profile.svg" alt="profile-icon" class="icon">
             </div>
         </div>
-    </div>
-    <!-- /nav-bar-->
+        <!-- /title-bar -->
+        <!-- nav-bar-->
+        <div id="nav-bar">
+            <div class="inner">
+                <div class="button" id="home">
+                    <img src="/icons/home.svg" alt="" class="icon">
+                    <div class="label">Home</div>
+                </div>
+                <div class="button" id="calendar">
+                    <img src="/icons/calendar.svg" alt="" class="icon">
+                    <div class="label">Calendar</div>
+                </div>
+                <div class="button" id="game">
+                    <img src="/icons/gamepad.svg" alt="" class="icon">
+                    <div class="label">Game</div>
+                </div>
+            </div>
+        </div>
+        <!-- /nav-bar-->
     <!-- date-selection -->
     <div id="date-selection">
         <div class="inner">
@@ -76,8 +71,8 @@
         </div>
     </div>
     <!-- /date-selection -->
-    <!-- calender -->
-    <div id="calender">
+    <!-- calendar -->
+    <div id="calendar">
         <div class="inner">
             <div class="weekdays">
                 <div>S</div>
@@ -91,7 +86,7 @@
             <div class="days"></div>
         </div>
     </div>
-    <!-- /calender -->
+    <!-- /calendar -->
     <!-- events -->
     <div id="events">
         <div class="inner">
@@ -101,7 +96,8 @@
     </div>
     <!-- /events -->
     <!-- script -->
-    <script src="./scripts/calender.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/calendar.js"></script>
     <!-- /script -->
 </body>
 

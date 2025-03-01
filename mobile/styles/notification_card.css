@@ -65,19 +65,19 @@
 
 }
 
-.notification-card > .action {
+.notification-card > .select-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
 }
 
-.notification-card > .action > .arrow-btn {
+.notification-card > .select-button > .arrow-btn {
     background-color: var(--color-white);
     border: none;
 }
 
-.notification-card > .action > .arrow-btn > .icon {
+.notification-card > .select-button > .arrow-btn > .icon {
     width: 30px;
     height: 30px;
 }

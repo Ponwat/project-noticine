@@ -1,16 +1,18 @@
 .medicine-detail {
-    background-color: var(--color-light);
-    width: 300px;
-    padding: 10px 20px;
-
-    position: relative;
+    background-color: var(--color-white);
+    width: 95vw;
+    max-width: 400px;
+    padding: 5px;
 
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
 
-    border: var(--color-secondary) 4px solid;
+    box-sizing: border-box;
+    border: var(--color-secondary) 2px solid;
     border-radius: 15px;
+
+    position: relative;
 }
 
 .medicine-detail > .close-button {
@@ -24,46 +26,75 @@
     transform: rotate(45deg);
 }
 
-.medicine-detail > .title {
-    font-size: 18px;
-    font-weight: 600;
+.medicine-detail > .info-block {
+    display: flex;
+    flex-direction: row;
+}
+
+.medicine-detail > .info-block > .medicine-img{
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    border: var(--color-secondary) 2px solid;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.medicine-detail > .info-block > .info {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 5px;
+}
+
+.medicine-detail > .info-block > .info > .title {
     color: var(--color-secondary);
-}
-
-.medicine-detail > .description {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.medicine-detail > .description > .label {
-    color: var(--color-main);
+.medicine-detail > .info-block > .info > .row {
+    font-size: 14px;
 }
 
-.medicine-detail > .description > .value {
+.medicine-detail > .info-block > .info > .row > .title-label {
+    color: var(--color-main);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.medicine-detail > .info-block > .info > .row > .normal-text {
     color: var(--color-black);
+    font-weight: 500;
 }
 
-.medicine-detail > .qr-code {
-    width: 200px;
-    height: 200px;
-}
-
-.medicine-detail > .medicine-label {
-    font-size: 15px;
+.medicine-detail > .info-block > .info > .row > .block-text {
+    width: auto;
+    height: 21px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: var(--color-main);
+    color: var(--color-white);
     font-weight: 600;
-    color: var(--color-main);
+
 }
 
-.medicine-detail > .medicine-list {
-    list-style-position: inside;
+.medicine-detail > .select-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.medicine-detail > .medicine-list > .medicine-name::marker {
-    color: var(--color-main);
-}
-
-.medicine-detail > .medicine-list > .medicine-name {
-    font-size: 15px;
+.medicine-detail > .select-button > .arrow-btn {
+    background-color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     font-weight: 600;
-    color: var(--color-black);
+}
+
+.medicine-detail > .select-button > .arrow-btn > .icon {
+    width: 30px;
+    height: 30px;
 }

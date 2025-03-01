@@ -1,10 +1,5 @@
-const calendar = document.querySelector(".calendar"),
-  date = document.querySelector(".date"),
-  daysContainer = document.querySelector(".days"),
-  prevMonthBtn = document.querySelector("#prev-month"),
-  nextMonthBtn = document.querySelector("#next-month"),
-  eventDate = document.getElementById("event-date"),
-  eventList = document.getElementById("event-list");
+// โค้ดส่วนนี้เป็นส่วนของการสร้างปฏิทินและเหตุการณ์ที่ต้องทำในแต่ละวัน
+// โดยจะแสดงเหตุการณ์ที่ต้องทำในแต่ละวันของเดือนปัจจุบัน
 
 let today = new Date();
 let month = today.getMonth();
@@ -117,15 +112,6 @@ function nextMonth() {
   initCalendar();
 }
 
-onload = function () {
-  initCalendar();
-};
-
-$(document).ready(function () {
-  $("#prev-month").click(prevMonth);
-  $("#next-month").click(nextMonth);
-});
-
 function showEvents(day) {
   const selectedDate = new Date(year, month, day);
   const formattedDate = `${selectedDate.getFullYear()}-${(
@@ -138,11 +124,34 @@ function showEvents(day) {
   $("#event-list").empty();
   if (events[formattedDate]) {
     events[formattedDate].forEach((event) => {
+      let description = "";
+      if (Array.isArray(event.description)) {
+        event.description.forEach((desc) => {
+          description += `<div>${desc}</div>`;
+        });
+      } else {
+        description += `<div>${event.description}</div>`;
+      }
       $("#event-list").append(
-        `<div>${event.time} - ${event.description}</div>`
+        `<div class="event">${event.time}<hr><span id="list">${description}</span></div>`
       );
     });
   } else {
-    $("#event-list").append(`<div>No events for this day.</div>`);
+    $("#event-list").append(`<hr><div>No events for this day.</div>`);
   }
 }
+
+onload = function () {
+  initCalendar();
+};
+
+$(document).ready(function () {
+  $("#home").click(function () {
+    window.location.href = "home.html";
+  });
+  $("#calender").click(function () {
+    window.location.href = "calender.html";
+  });
+  $("#prev-month").click(prevMonth);
+  $("#next-month").click(nextMonth);
+});
