@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,23 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="calendar">
             <div class="month">
-                <button class="prev-month">◀</button>
-                <div class="date">December 2022</div>
-                <button class="next-month">▶</button>
+                <button id="prev-month" class="arrow-btn"><img src="/icons/arrow_left.svg" alt="arrow_left" class=""></button>
+                <div class="date">January 2025</div>
+                <button id="next-month" class="arrow-btn"><img src="/icons/arrow_right.svg" alt="arrow_right" class=""></button>
             </div>
             <div class="weekdays">
-                <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+                <div>S</div>
+                <div>M</div>
+                <div>T</div>
+                <div>W</div>
+                <div>T</div>
+                <div>F</div>
+                <div>S</div>
             </div>
             <div class="days"></div>
         </div>
@@ -26,4 +34,5 @@
         </div>
     </div>
 </body>
+
 </html>

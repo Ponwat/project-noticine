@@ -1,0 +1,19 @@
+#events {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#events > .inner {
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    max-width: 350px;
+    padding: 20px;
+    text-align: left;
+    margin-top: 10px;
+
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-white);
+}

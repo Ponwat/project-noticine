@@ -4,6 +4,7 @@
 
 body {
     display: flex;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -13,6 +14,7 @@ body {
 
 .container {
     width: 350px;
+    height: 90vh;
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -28,13 +30,12 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
-.prev-month, .next-month {
+.arrow-btn {
     background: none;
     border: none;
-    font-size: 1.5rem;
     cursor: pointer;
 }
 
@@ -45,7 +46,6 @@ body {
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     margin-left: -5px;
-
 }
 
 .days {
