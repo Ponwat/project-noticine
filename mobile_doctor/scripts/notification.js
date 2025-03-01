@@ -34,3 +34,8 @@ button.onclick = function() {
     // alert(notification);
     label.innerText = notification; 
 }
+
+if (Android != undefined) {
+    alert(Android);
+    
+}
