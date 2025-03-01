@@ -1,5 +1,6 @@
 <!doctype html>
-<html>
+
+<html lang="en">
     
 <head>
     <meta charset="UTF-8">
@@ -68,38 +69,161 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.custom-box {
+    background-color: #6986FA;  /* สีพื้นหลัง */
+    color: white;  /* สีข้อความ */
+    padding: 2rem;  /* Padding (32px) */
+    width: 100%;  /* กว้างสุด 90% ของหน้าจอ */
+    /* max-width: 412px;  ขนาดสูงสุดที่ 412px */
+    height: auto;  /* ปรับขนาดอัตโนมัติ */
+    min-height: 350px;  /* กำหนดความสูงขั้นต่ำ */
+    
+    font-weight: bold;  /* ทำให้ตัวอักษรหนา */
+    font-size: 1.125rem;  /* ขนาดตัวอักษรเริ่มต้น (18px) */
+    border-radius: 0 0 24px 24px;  /* โค้งเฉพาะด้านล่าง */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+    display: flex;  /* ใช้ Flexbox */
+    flex-direction: column; 
+   
+   
+    margin: 0 auto;  /* จัดให้อยู่ตรงกลาง */
+}
+
+/* สำหรับหน้าจอขนาดกลางขึ้นไป (≥768px) */
+@media (min-width: 768px) {
+    .custom-box {
+        /* max-width: 1000px;  กำหนดความกว้างเป็น 600px */
+        font-size: 1.25rem;  /* ขนาดตัวอักษรใหญ่ขึ้น (24px) */
+        min-height: 350px;  /* เพิ่มความสูง */
+    }
+}
+
+/* สำหรับหน้าจอขนาดใหญ่ขึ้นไป (≥1024px) */
+@media (min-width: 1024px) {
+    .custom-box {
+        /* max-width: 1960px;  กว้างขึ้นเป็น 700px */
+        min-height: 350px;  /* เพิ่มความสูง */
+        font-size: 1.25rem;  /* ขนาดตัวอักษรใหญ่ขึ้น (28px) */
+    }
+}
+ /* ตั้งค่ากล่องแสดงรายละเอียด */
+ .medicine-detail {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* ขยายให้กว้างขึ้นตามหน้าจอ */
+    max-width: 1960px; /* กำหนดความกว้างสูงสุด */
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+}
+
+        /* ใช้ Flexbox ให้ข้อมูลแต่ละแถวติดกัน */
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* ระยะห่างเล็กน้อยระหว่าง label กับข้อความ */
+        }
+
+        .info-block {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .medicine-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .title-label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .block-text, .normal-text {
+            font-size: 14px;
+        }
+
+        /* ทำให้ responsive สำหรับหน้าจอขนาดเล็ก */
+        @media (max-width: 480px) {
+            .medicine-detail {
+                padding: 15px;
+                max-width: 95%;
+            }
+
+            .medicine-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+
+            .title-label, .block-text, .normal-text {
+                font-size: 12px;
+            }
+
+            .row {
+                flex-wrap: nowrap; /* บังคับให้ข้อมูลอยู่บรรทัดเดียวกัน */
+            }
+        }
 </style>
+ <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./all_style.css">
+    <link rel="stylesheet" href="./variables.css">
+
+    <!-- medicine-detail -->
+    <link rel="stylesheet" href="./medicine_detail.css">
+    <!-- /medicine-detail -->
+
+    <!-- /styles -->
+     <!-- /styles -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- /script -->
 </head>
 
 <body>
-    
-    <div component="title-bar" class="bg-bgmain p-4 rounded-b-lg flex items-center justify-between text-white" id="title-bar">
-        <img src="./setting.svg" alt="Settings" class="w-8 h-8">
-        <span class="font-bold text-xl">Noticine</span>
-        <img src="./profile.svg" alt="Profile" class="w-8 h-8">
-    </div>
+  <!-- <div class="bg-[#6986FA] text-white p-8 rounded-b-3xl shadow-1xl w-[412px] h-[367px] text-center font-bold text-xl"></div>
+  <div class="bg-[#6986FA] text-white p-8 rounded-b-3xl shadow-2xl max-w-[90%] md:max-w-[600px] h-auto min-h-[200px]  text-center font-bold text-lg md:text-2xl flex items-center justify-center rounded-b-3xl mx-auto">  
+</div> -->
+<div class="custom-box">
+  <img src="./profile.svg" class="w-20 h-20" mx-auto>
+  <p>Name:<br></p>
+  <br>
+  <p>Gender:</p>
+<p>age:</p>
 
-    <label class="switch">
-        <input type="checkbox" checked>
-        <span class="slider round"></span>
-      </label>
-    <div class="max-w-md mx-auto flex items-center gap-4 bg-white p-4 rounded-lg justify-between content">
-        <button id="prevDay" class="p-2 rounded-lg hover:bg-gray-200">&#x276E;</button>
-        <div id="dateDisplay" class="px-4 py-2 rounded-lg text-lg font-semibold cursor-pointer">
-            setting EIEI
-        </div>
-        <button id="nextDay" class="p-2 rounded-lg hover:bg-gray-200">&#x276F;</button>
-    </div>
-
- 
-<div class="my-switch">
-    <label>
-      <input type="checkbox"/>
-      <div class="-toggle">
-        <div class="circle"></div>
-        
-      </div>
-    </label>
+  <p>Weight:<br></p>
+  <p>Underlying Diseases:<br></p>
+  <p>Drugallergy:<br></p>
+  <p>Tel.:<br></p>
 </div>
     <div class="navbar p-4 flex justify-around items-center">
         <div>
@@ -116,9 +240,126 @@ input:checked + .slider:before {
         </div>
     </div>
 
-    <script>
-        // ... (JavaScript เดิมของคุณ) ...
-    </script>
+  
+    <div class="medicine-detail"> 
+      <!-- 1. รายละเอียดของยา -->
+      <div class="info-block">
+          <img class="medicine-img"
+              src="https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
+              alt="medicine_img">
+          <div class="info">
+              <span class="title" id="medicine-detail-title">Para</span>
+              <div class="row">
+                  <span class="title-label">Quantity:</span>
+                  <span class="block-text" id="medicine-detail-quentity">1 pill</span>
+              </div>
+              <div class="row">
+                  <span class="title-label">Note:</span>
+                  <span class="normal-text" id="medicine-detail-note">Take after meals.</span>
+              </div>
+          </div>
+      </div>
 
+      <!-- 2. ข้อมูลการใช้ยา -->
+      <div class="info-block">
+          <div class="info">
+              <div class="row" id="medicine-detail-time">
+                  <span class="title-label">Time:</span>
+                  <span class="block-text">08:00</span>
+              </div>
+              <div class="row">
+                  <span class="title-label">Frequency:</span>
+                  <span class="normal-text" id="medicine-detail-frequency">Everyday</span>
+              </div>
+              <div class="row">
+                  <span class="title-label">Duration:</span>
+                  <span class="normal-text" id="medicine-detail-duration">Until the symptoms improve</span>
+              </div>
+              <div class="row">
+                  <span class="title-label">Start Date:</span>
+                  <span class="normal-text" id="medicine-detail-startdate">1 January 2025</span>
+              </div>
+          </div>
+      </div>
+
+      <!-- 3. การบันทึกการใช้ยา -->
+      <div class="info-block">
+          <div class="info">
+              <div class="row">
+                  <span class="title-label">Date:</span>
+                  <span class="normal-text" id="medicine-detail-todaydate">1 January 2025</span>
+              </div>
+              <div class="row">
+                  <span class="normal-text">Have you taken this medicine today?</span>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="medicine-detail"> 
+    <!-- 1. รายละเอียดของยา -->
+    <div class="info-block">
+        <img class="medicine-img"
+            src="https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450"
+            alt="medicine_img">
+        <div class="info">
+            <span class="title" id="medicine-detail-title">Para</span>
+            <div class="row">
+                <span class="title-label">Quantity:</span>
+                <span class="block-text" id="medicine-detail-quentity">1 pill</span>
+            </div>
+            <div class="row">
+                <span class="title-label">Note:</span>
+                <span class="normal-text" id="medicine-detail-note">Take after meals.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ข้อมูลการใช้ยา -->
+    <div class="info-block">
+        <div class="info">
+            <div class="row" id="medicine-detail-time">
+                <span class="title-label">Time:</span>
+                <span class="block-text">08:00</span>
+            </div>
+            <div class="row">
+                <span class="title-label">Frequency:</span>
+                <span class="normal-text" id="medicine-detail-frequency">Everyday</span>
+            </div>
+            <div class="row">
+                <span class="title-label">Duration:</span>
+                <span class="normal-text" id="medicine-detail-duration">Until the symptoms improve</span>
+            </div>
+            <div class="row">
+                <span class="title-label">Start Date:</span>
+                <span class="normal-text" id="medicine-detail-startdate">1 January 2025</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. การบันทึกการใช้ยา -->
+    <div class="info-block">
+        <div class="info">
+            <div class="row">
+                <span class="title-label">Date:</span>
+                <span class="normal-text" id="medicine-detail-todaydate">1 January 2025</span>
+            </div>
+            <div class="row">
+                <span class="normal-text">Have you taken this medicine today?</span>
+            </div>
+        </div>
+    </div>
+</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+ 
+ 
+
+<!-- script -->
+<script src="./medicine_detail.js"></script>
+<!-- /script -->
 </body>
 </html>
