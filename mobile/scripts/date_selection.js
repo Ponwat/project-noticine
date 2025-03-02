@@ -30,9 +30,6 @@ const days = [
 
 
 function thisDay(day, month, year) {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  console.log(lastDay.getDate());
   const selectedDate = new Date(year, month, day);
   let dayweek = selectedDate.getDay();
   

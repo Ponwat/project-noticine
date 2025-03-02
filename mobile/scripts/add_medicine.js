@@ -182,22 +182,35 @@ function closeModal(modalId) {
     document.getElementById("modalOverlay").style.display = "none";
 }
 
-//-------------------------------------- SAVE CANCEL RESET SECTION --------------------------------
-// function saveData() {
-//     let medName = document.getElementById("medName").value.trim();
-//     let unit = document.getElementById("unitInput").value.trim();
-    
-//     if (medName === "" || unit === "") {
-//         alert("Please fill in all fields before saving.");
-//         return;
+//-------------------------------------- JSON --------------------------------
+let today = new Date();
+let datafromLS = {};
+function JSONsaveMedicineList(data) {
+    // let data_medicine_list = `{"medicine-list": [${data}]}`;
+    // console.log(data_medicine_list);
+    // localStorage.setItem("Medicine", JSON.stringify(data_medicine_list));
+    localStorage.setItem("Medicine", JSON.stringify(data));
+}
+// //name dose note date time
+// function JSONsaveEventList(data) {
+//     let data_event_list = {};
+//     if (data["medicine-list"]){ 
+//         data["medicine-list"].forEach((i) => {
+            
+//           });
 //     }
-    
-//     console.log("Saving data:", { medication: medName, unit: unit });
-//     alert("Data saved successfully!");
-
-//     window.location.href = "home.html";
 // }
 
+// {{date : [{time: [name, dose, note]}, {time: [name, dose, note]}]}}
+
+onload = function () {
+    if (localStorage.getItem("Medicine") != null) {
+        datafromLS = JSON.parse(localStorage.getItem("Medicine"));
+        console.log(datafromLS);
+    }
+}
+
+//-------------------------------------- SAVE CANCEL RESET SECTION --------------------------------
 function cancelForm() {
     window.location.href = "home.html";
 }
@@ -216,6 +229,10 @@ function resetForm() {
 
     document.getElementById("imageInput").value = "";
 }
+
+
+
+
 
 function saveData() {
     let medName = document.getElementById("medName").value.trim();
@@ -236,8 +253,21 @@ function saveData() {
         let dose = item.querySelector(".dose").textContent;
         timeDoseList.push({ time, dose });
     }
+    console.log("Time List:", timeDoseList);
+    let data = `{
+      "medicine-name": "${medName}",
+      "time-dose": [
+        ${timeDoseList.map(item => `{"time": "${item.time}", "dose": "${item.dose}"}`).join(",")}
+      ],
+      "frequency": "${frequency}",
+      "duration": "${duration}",
+      "note": "${note}",
+      "image": "${document.getElementById("medImage").src}",
+      "Start-date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+    }`;
 
-    console.log("Saving data:", { medication: medName, unit, timeDoseList, frequency, duration, note });
+    JSONsaveMedicineList(data);
+    // localStorage.setItem("Medicine", data);
     alert("Data saved successfully!");
 
     window.location.href = "home.html";

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +12,30 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet" />
     <!-- /import -->
-         <!-- styles -->
+    <!-- styles -->
     <link rel="stylesheet" href="./styles/all_style.css">
     <link rel="stylesheet" href="./styles/variables.css">
 
     <link rel="stylesheet" href="./styles/add_medicine.css">
-        <!-- /styles -->
+    <!-- /styles -->
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- /script -->
     <title>ADD Medication Form</title>
 </head>
+
 <body>
     <div class="container">
         <!-- -------------------------------- IMAGE SECTION ------------------------------------------ -->
         <div class="image-container">
             <img id="medImage" src="../images/add_image.png" alt="Medication">
-            <input  type="file" id="imageInput" accept="image/*">
+            <input type="file" id="imageInput" accept="image/*">
         </div>
         <!-- -------------------------------- Medication Name SECTION ------------------------------------------ -->
         <label>Medication Name</label>
         <input type="text" id="medName" placeholder="Enter medication name">
-        
+
         <!-- -------------------------------- UNIT SECTION ------------------------------------------ -->
         <label>Unit</label>
         <input type="text" id="unitInput" readonly placeholder="Select Unit" onclick="openUnitModal()">
@@ -49,7 +55,7 @@
             <button onclick="closeUnitModal()">Close</button>
         </div>
 
-               
+
         <!-- -------------------------------- ADD TIME & DOSE SECTION ------------------------------------------ -->
 
         <div class="modal" id="timeModal">
@@ -73,13 +79,14 @@
 
 
         <button class="add-time-button" onclick="openModaltime()">+ Add Time & Dose</button>
-        
-        
+
+
         <!-- -------------------------------- FREQUENCY SECTION ------------------------------------------ -->
 
         <label>Frequency</label>
-        <input type="text" id="frequencyInput" readonly placeholder="Select frequency" onclick="openModal('frequencyModal')">
-        
+        <input type="text" id="frequencyInput" readonly placeholder="Select frequency"
+            onclick="openModal('frequencyModal')">
+
         <div class="modal-overlay" id="modalOverlay" onclick="closeFrequencyModal()"></div>
         <!-- Frequency Modal -->
         <div class="frequency-modal" id="frequencyModal">
@@ -119,7 +126,7 @@
         <!-- -------------------------------- ADD NOTE SECTION ------------------------------------------ -->
         <label>Note</label>
         <input type="text" id="noteInput" placeholder="Enter Note">
-        
+
 
         <!-- -------------------------------- SAVE CANCEL RESET BUTTON SECTION ------------------------------------------ -->
         <div class="button-group">
@@ -128,8 +135,8 @@
             <button class="reset" onclick="resetForm()">Reset</button>
         </div>
     </div>
-    
+
     <script src="./scripts/add_medicine.js"></script>
 </body>
-</html>
 
+</html>
