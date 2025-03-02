@@ -298,3 +298,11 @@ function saveData() {
     window.location.href = "home.html";
 }
 
+function saveDataOnCookie() {
+    const array = JSON.parse(localStorage.getItem("Medicine")).Medicine;
+    array.forEach(element => {
+        delete element.image;
+    });
+    document.cookie = "local=" + JSON.stringify(array);
+    console.log(document.cookie);
+}
