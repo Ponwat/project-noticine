@@ -141,7 +141,12 @@ function selectAnswer(e){
 
 function showScore(){
     resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;;
+
+    saveLatestScore(score);
+
+    let latestScore = getLatestScore();
+
+    questionElement.innerHTML = `You scored ${latestScore} out of ${questions.length}!`;;
     nextButton.innerHTML = "play Again";
     nextButton.style.display = "block";
 }
@@ -163,6 +168,17 @@ nextButton.addEventListener("click", ()=>{
     }
 })
 
+function saveLatestScore(score) {
+    localStorage.setItem("latestScore", score);
+}
+
+function getLatestScore() {
+    return localStorage.getItem("latestScore") || 0;
+}
+
 startQuiz();
+
+console.log("Latest Score:", getLatestScore());
+
 
 
