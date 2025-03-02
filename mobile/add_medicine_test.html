@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./styles/all_style.css">
     <link rel="stylesheet" href="./styles/variables.css">
 
-    <link rel="stylesheet" href="./styles/add-medicine.css">
+    <link rel="stylesheet" href="./styles/add_medicine.css">
     <!-- /styles -->
     <!-- script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -51,8 +51,8 @@
                 <option value="ml">ml</option>
                 <option value="mg">mg</option>
             </select>
-            <button class="ok-btn" onclick="setUnit()">OK</button>
-            <button class="cancel-btn" onclick="closeUnitModal()">Close</button>
+            <button onclick="setUnit()">OK</button>
+            <button onclick="closeUnitModal()">Close</button>
         </div>
 
 
@@ -64,8 +64,7 @@
             <input type="time" id="timeInput">
             <label>Dose</label>
             <input type="number" id="doseInput" min="1" value="1">
-            <button class="ok-btn" onclick="addTimeDose()">OK</button>
-            <button class="cancel-btn" onclick="closeTimeModal()">Cancel</button>
+            <button onclick="addTimeDose()">OK</button>
         </div>
 
         <div class="time-dose-container">
@@ -105,8 +104,8 @@
                 <select id="intervalSelect"></select>
             </div>
 
-            <button class="ok-btn" onclick="setFrequency()">OK</button>
-            <button class="cancel-btn" onclick="closeModal('frequencyModal')">Close</button>
+            <button onclick="setFrequency()">OK</button>
+            <button onclick="closeModal('frequencyModal')">Close</button>
 
         </div>
 
@@ -117,26 +116,11 @@
 
         <div class="modal-overlay" id="modalOverlay" onclick="closeDurationModal()"></div>
 
-        <!-- Duration Modal -->
         <div class="duration-modal" id="durationModal">
-            <h3>Select Duration</h3>
-            <select id="durationSelect" onchange="handleDurationChange()">
-                <option value="For a full course">For a full course</option>
-                <option value="Until symptoms resolve">Until symptoms resolve</option>
-                <option value="Until next follow-up">Until next follow-up</option>
-                <option value="Long-term">Long-term</option>
-                <option value="X Days">X Days</option>
-                <option value="X Weeks">X Weeks</option>
-                <option value="X Months">X Months</option>
-            </select>
-
-            <div id="durationIntervalContainer" class="hidden">
-                <label>Set Interval:</label>
-                <select id="durationIntervalSelect"></select>
-            </div>
-
-            <button class="ok-btn" onclick="setDuration()">OK</button>
-            <button class="cancel-btn" onclick="closeDurationModal()">Close</button>
+            <h3>Select Duration (Days)</h3>
+            <select id="durationSelect"></select>
+            <button onclick="setDuration()">OK</button>
+            <button onclick="closeDurationModal()">Close</button>
         </div>
 
         <!-- -------------------------------- ADD NOTE SECTION ------------------------------------------ -->
@@ -149,10 +133,22 @@
             <button class="save" onclick="saveData()">Save</button>
             <button class="cancel" onclick="cancelForm()">Cancel</button>
             <button class="reset" onclick="resetForm()">Reset</button>
+            <button class="test" onclick="test()">Test</button>
         </div>
     </div>
 
-    <script src="./scripts/add-medicine.js"></script>
+    <script src="./scripts/add_medicine.js"></script>
+    <script>
+        if (AppInventor) {
+            alert(AppInventor)
+        }
+
+        function test() {
+            if (AppInventor) {
+                AppInventor.setWebViewString("test")
+            }
+        }
+    </script>
 </body>
 
 </html>

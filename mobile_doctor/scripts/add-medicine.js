@@ -1,14 +1,46 @@
 //----------------------------------IMAGE SECTION ---------------------------------------------
 document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('medImage').src = e.target.result;
-        }
-        reader.readAsDataURL(file);
-    }
+    
+    document.getElementById('medImage').src = URL.createObjectURL(file);
+    // if (file) {
+    //     const reader = new FileReader();
+    //     reader.onload = function(e) {
+    //         newSrc = downscaleImage(e.target.result, 200, "image/jpeg");
+    //         console.log(newSrc)
+    //         document.getElementById('medImage').src = newSrc;
+    //     }
+    //     reader.readAsDataURL(file);
+    // }
 });
+
+// Take an image URL, downscale it to the given width, and return a new image URL.
+function downscaleImage(dataUrl, newWidth, imageType, imageArguments) {
+    "use strict";
+    var image, oldWidth, oldHeight, newHeight, canvas, ctx, newDataUrl;
+
+    // Provide default values
+    imageType = imageType || "image/jpeg";
+    imageArguments = imageArguments || 0.7;
+
+    // Create a temporary image so that we can compute the height of the downscaled image.
+    image = new Image();
+    image.src = dataUrl;
+    oldWidth = image.width;
+    oldHeight = image.height;
+    newHeight = Math.floor(oldHeight / oldWidth * newWidth)
+
+    // Create a temporary canvas to draw the downscaled image on.
+    canvas = document.createElement("canvas");
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+
+    // Draw the downscaled image on the canvas and return the new data URL.
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, newWidth, newHeight);
+    newDataUrl = canvas.toDataURL(imageType, imageArguments);
+    return newDataUrl;
+}
 
 //---------------------------------- UNIT SECTION ---------------------------------------------
 
@@ -46,9 +78,7 @@ function addTimeDose() {
                 <div class="time">${time}</div>
                 <div class="dose">${dose} ${UnitselectedValue}</div>
                 <button class="delete" onclick="this.parentElement.parentElement.remove()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
-                        <path d="M3 6h18v2H3V6zm2 3h14v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9zm3 2v9h2v-9H8zm4 0v9h2v-9h-2zm4 0v9h2v-9h-2z"/>
-                    </svg>
+                    <img src="../icons/delete.svg" alt="delete" class="icon">
                 </button>
             </div>
         `;
@@ -143,29 +173,74 @@ function closeFrequencyModal() {
 
 //-------------------------------------- DURATION SECTION --------------------------------
 function setDuration() {
-    let selectedValue = document.getElementById("durationSelect").value;
-    document.getElementById("durationInput").value = selectedValue + " days";
-    document.getElementById("durationModal").style.display = "none";
+    let duration = document.getElementById("durationSelect").value;
+    let interval = document.getElementById("durationIntervalSelect").value;
+    let durationInput = document.getElementById("durationInput");
+
+    if (duration === "X Days" || duration === "X Weeks" || duration === "X Months") {
+        durationInput.value = duration.replace("X", interval);
+    } else {
+        durationInput.value = duration;
+    }
+    
     closeDurationModal();
 }
 
-function populateDurationOptions() {
-    let durationSelect = document.getElementById("durationSelect");
-    durationSelect.innerHTML = "";
-    for (let i = 2; i <= 100; i++) {
+function checkDuration() {
+    const durationSelect = document.getElementById('durationSelect');
+    const durationIntervalContainer = document.getElementById('durationIntervalContainer');
+
+    if (durationSelect.value === 'X Days' || durationSelect.value === 'X Weeks' || durationSelect.value === 'X Months') {
+        durationIntervalContainer.style.display = 'block';
+    } else {
+        durationIntervalContainer.style.display = 'none';
+        document.getElementById('durationIntervalSelect').value = '';
+    }
+}
+
+function updateDuration() {
+    const durationInterval = document.getElementById('durationIntervalSelect').value;
+    const durationSelect = document.getElementById('durationSelect');
+
+    if (durationInterval >= 1 && durationInterval <= 365) { 
+        durationSelect.options[durationSelect.selectedIndex].text = `Every ${durationInterval} ${durationSelect.value.replace('X ', '')}`;
+    }
+}
+
+
+function handleDurationChange() {
+    let selectedDuration = document.getElementById("durationSelect").value;
+    let intervalContainer = document.getElementById("durationIntervalContainer");
+    
+    if (selectedDuration === "X Days") {
+        updateDurationIntervalOptions(2, 30);
+        intervalContainer.classList.remove("hidden");
+    } else if (selectedDuration === "X Weeks") {
+        updateDurationIntervalOptions(2, 21);
+        intervalContainer.classList.remove("hidden");
+    } else if (selectedDuration === "X Months") {
+        updateDurationIntervalOptions(2, 12);
+        intervalContainer.classList.remove("hidden");
+    } else {
+        intervalContainer.classList.add("hidden");
+    }
+}
+
+function updateDurationIntervalOptions(min, max) {
+    let select = document.getElementById("durationIntervalSelect");
+    select.innerHTML = "";
+    for (let i = min; i <= max; i++) {
         let option = document.createElement("option");
         option.value = i;
-        option.textContent = i + " days";
-        durationSelect.appendChild(option);
+        option.textContent = i;
+        select.appendChild(option);
     }
 }
 
 function openDurationModal() {
-    populateDurationOptions();
     document.getElementById("durationModal").style.display = "block";
-    document.getElementById("modalOverlay").style.display = "block";    
+    document.getElementById("modalOverlay").style.display = "block";
 }
-
 
 function closeDurationModal() {
     document.getElementById("durationModal").style.display = "none";
@@ -184,23 +259,40 @@ function closeModal(modalId) {
     document.getElementById("modalOverlay").style.display = "none";
 }
 
-//-------------------------------------- SAVE CANCEL RESET SECTION --------------------------------
-function saveData() {
-    let medName = document.getElementById("medName").value.trim();
-    let unit = document.getElementById("unitInput").value.trim();
-    
-    if (medName === "" || unit === "") {
-        alert("Please fill in all fields before saving.");
-        return;
+//-------------------------------------- JSON --------------------------------
+let today = new Date();
+let datafromLS = {};
+function JSONsaveMedicineList(data) {
+    // let data_medicine_list = `{"medicine-list": [${data}]}`;
+    // console.log(data_medicine_list);
+    // localStorage.setItem("Medicine", JSON.stringify(data_medicine_list));
+    localStorage.setItem("Medicine", JSON.stringify(data));
+}
+localStorage.getItem("Medicine");
+// //name dose note date time
+// function JSONsaveEventList(data) {
+//     let data_event_list = {};
+//     if (data["medicine-list"]){ 
+//         data["medicine-list"].forEach((i) => {
+            
+//           });
+//     }
+// }
+
+// {{date : [{time: [name, dose, note]}, {time: [name, dose, note]}]}}
+
+onload = function () {
+    if (localStorage.getItem("Medicine") != null) {
+        datafromLS = JSON.parse(localStorage.getItem("Medicine"));
+        alert(datafromLS);
     }
-    
-    console.log("Saving data:", { medication: medName, unit: unit });
-    alert("Data saved successfully!");
 }
 
+//-------------------------------------- SAVE CANCEL RESET SECTION --------------------------------
 function cancelForm() {
     window.location.href = "home.html";
 }
+
 function resetForm() {
     document.getElementById("medName").value = "";
     document.getElementById("unitInput").value = "";
@@ -211,7 +303,48 @@ function resetForm() {
 
     document.getElementById("timeList").innerHTML = "";
 
-    document.getElementById("medImage").src = "add-image.png";
+    document.getElementById("medImage").src = "../images/add_image.png";
 
     document.getElementById("imageInput").value = "";
 }
+
+
+function saveData() {
+    let medName = document.getElementById("medName").value.trim();
+    let unit = document.getElementById("unitInput").value.trim();
+    let timeList = document.getElementById("timeList").children;
+    let frequency = document.getElementById("frequencyInput").value.trim();
+    let duration = document.getElementById("durationInput").value.trim();
+    let note = document.getElementById("noteInput").value.trim();
+
+    if (medName === "" || unit === "" || timeList.length === 0 || frequency === "" || duration === "") {
+        alert("Please fill in all fields before saving.");
+        return;
+    }
+
+    let timeDoseList = [];
+    for (let item of timeList) {
+        let time = item.querySelector(".time").textContent;
+        let dose = item.querySelector(".dose").textContent;
+        timeDoseList.push({ time, dose });
+    }
+    console.log("Time List:", timeDoseList);
+    let data = `{
+      "medicine-name": "${medName}",
+      "time-dose": [
+        ${timeDoseList.map(item => `{"time": "${item.time}", "dose": "${item.dose}"}`).join(",")}
+      ],
+      "frequency": "${frequency}",
+      "duration": "${duration}",
+      "note": "${note}",
+      "image": "${document.getElementById("medImage").src}",
+      "Start-date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+    }`;
+
+    JSONsaveMedicineList(data);
+    // localStorage.setItem("Medicine", data);
+    alert("Data saved successfully!");
+
+    window.location.href = "home.html";
+}
+
