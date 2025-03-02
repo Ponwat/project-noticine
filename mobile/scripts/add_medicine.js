@@ -235,7 +235,10 @@ onload = function () {
     if (localStorage.getItem("Medicine") != null) {
         datafromLS = JSON.parse(localStorage.getItem("Medicine"));
         for (let i = 0; i < datafromLS.Medicine.length; i++) {
-            dataList = JSON.stringify(datafromLS.Medicine[i]); 
+            dataList += JSON.stringify(datafromLS.Medicine[i]); 
+            if (i != datafromLS.Medicine.length - 1){
+                dataList += ",";
+            }
         }
     }
 }

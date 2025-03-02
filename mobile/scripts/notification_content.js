@@ -11,8 +11,14 @@ onload = function () {
         dataList = datafromLS.Medicine[i]; 
         console.log(dataList);
     }
-}
+  }
 };
+
+let notificationSortTimeDate = {};
+
+// function JSONSortTimeDate() {
+
+// }
 
 
 function AddNotificationCard(medicine_img, medicine_title, medicine_quentity, medicine_note) {
