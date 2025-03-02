@@ -5,4 +5,7 @@ $(document).ready(function () {
     $("#calendar").click(function () {
       window.location.href = "calendar.html";
     });
+    $("#game").click(function () {
+      window.location.href = "game.html";
+    });
   });
