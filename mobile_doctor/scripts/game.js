@@ -1,4 +1,4 @@
-const questions = [
+const AllQuestions = [
     {
         question: "When should you take your Paracetamol?",
         answers: [
@@ -73,6 +73,13 @@ const questions = [
     },
 ];
 
+let questions = [];
+
+function getRandomQuestions(num){
+    const shuffled = AllQuestions.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
@@ -81,6 +88,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz(){
+    questions = getRandomQuestions(3);
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
