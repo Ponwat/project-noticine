@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
     if (validUsers[username] === password) {
         // เปลี่ยนเส้นทางไปยังหน้า hello_world.html
-        window.location.href = "hello_world.html";
+        window.location.href = ""/mobile_doctor/home.html"";
     } else {
         // แสดงข้อความผิดพลาด
         alert("Invalid username or password");
