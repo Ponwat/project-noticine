@@ -217,6 +217,7 @@ function closeModal(modalId) {
 //-------------------------------------- JSON --------------------------------
 let today = new Date();
 let datafromLS = {};
+let dataList = "";
 function JSONsaveMedicineList(data) {
     // let data_medicine_list = `{"medicine-list": [${data}]}`;
     let data_medicine_list = "";
@@ -236,9 +237,7 @@ onload = function () {
     if (localStorage.getItem("Medicine") != null) {
         datafromLS = JSON.parse(localStorage.getItem("Medicine"));
         for (let i = 0; i < datafromLS.Medicine.length; i++) {
-            console.log(datafromLS.Medicine[i]);
             dataList = JSON.stringify(datafromLS.Medicine[i]); 
-            console.log(dataList);
         }
     }
 }

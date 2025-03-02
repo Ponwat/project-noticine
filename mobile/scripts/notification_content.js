@@ -1,18 +1,18 @@
-const medicine_img = "https://plus.unsplash.com/premium_photo-1668487826871-2f2cac23ad56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjAxN3wwfDF8c2VhcmNofDV8fG1lZGljaW5lfGVufDB8fHx8MTc0MDcyMDM0NHww&ixlib=rb-4.0.3&q=85&q=85&fmt=jpg&crop=entropy&cs=tinysrgb&w=450";
-
 $(document).ready(function () {
   $("#add-medicine").click(function () {
     window.location.href = "add_medicine.html";
   });
-  $("#notication-card").click(function (e) {
-    $("#medicine-detail").css("display", "flex");
-  });
 });
 
 onload = function () {
-  
+  if (localStorage.getItem("Medicine") != null) {
+    datafromLS = JSON.parse(localStorage.getItem("Medicine"));
+    for (let i = 0; i < datafromLS.Medicine.length; i++) {
+        dataList = datafromLS.Medicine[i]; 
+        console.log(dataList);
+    }
+}
 };
-
 
 
 function AddNotificationCard(medicine_img, medicine_title, medicine_quentity, medicine_note) {
