@@ -2,16 +2,14 @@
 document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     
-    document.getElementById('medImage').src = URL.createObjectURL(file);
-    // if (file) {
-    //     const reader = new FileReader();
-    //     reader.onload = function(e) {
-    //         newSrc = downscaleImage(e.target.result, 200, "image/jpeg");
-    //         console.log(newSrc)
-    //         document.getElementById('medImage').src = newSrc;
-    //     }
-    //     reader.readAsDataURL(file);
-    // }
+    // document.getElementById('medImage').src = URL.createObjectURL(file);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('medImage').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
 });
 
 // Take an image URL, downscale it to the given width, and return a new image URL.
