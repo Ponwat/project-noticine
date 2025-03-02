@@ -51,8 +51,8 @@
                 <option value="ml">ml</option>
                 <option value="mg">mg</option>
             </select>
-            <button onclick="setUnit()">OK</button>
-            <button onclick="closeUnitModal()">Close</button>
+            <button class="ok-btn" onclick="setUnit()">OK</button>
+            <button class="cancel-btn" onclick="closeUnitModal()">Close</button>
         </div>
 
 
@@ -64,7 +64,8 @@
             <input type="time" id="timeInput">
             <label>Dose</label>
             <input type="number" id="doseInput" min="1" value="1">
-            <button onclick="addTimeDose()">OK</button>
+            <button class="ok-btn" onclick="addTimeDose()">OK</button>
+            <button class="cancel-btn" onclick="closeTimeModal()">Cancel</button>
         </div>
 
         <div class="time-dose-container">
@@ -104,8 +105,8 @@
                 <select id="intervalSelect"></select>
             </div>
 
-            <button onclick="setFrequency()">OK</button>
-            <button onclick="closeModal('frequencyModal')">Close</button>
+            <button class="ok-btn" onclick="setFrequency()">OK</button>
+            <button class="cancel-btn" onclick="closeModal('frequencyModal')">Close</button>
 
         </div>
 

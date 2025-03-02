@@ -4,6 +4,7 @@ body {
     align-items: center;
     margin: 0;
     background: var(--color-secondary);
+    
 }
 .container {
     display: flex;
@@ -225,6 +226,12 @@ button {
     width: 80%;
     max-width: 300px;
     box-sizing: border-box;
+    
+}
+
+.modal h3 {
+    padding: 10px;
+    font-size: 24px;
 }
 
 .modal label{
@@ -234,8 +241,22 @@ button {
 }
 
 .modal button {
+    border-radius: 24px;
     margin-top: 10px;
     width: 100%; 
+}
+
+.modal .ok-btn{
+    margin-top: 20px;
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 4px solid var(--color-grey);
+}
+
+.modal .cancel-btn{
+    color:var(--color-black);
+    background-color: #ededf3;
+    border: 4px solid var(--color-grey);
 }
 
 #xDayInput {
@@ -258,21 +279,27 @@ button {
     max-width: 300px;
 }
 
+.duration-modal h3{
+    padding: 10px;
+    font-size: 24px;
+}
+
 .duration-modal button {
     margin-top: 10px;
-    width: 50%;
+    width: 100%;
     border-radius: 24px;
 }
 
 .duration-modal .ok-btn{
+    margin-top: 20px;
     color: var(--color-white);
     background-color: var(--color-secondary);
     border: 4px solid var(--color-grey);
 }
 
 .duration-modal .cancel-btn{
-    color: var(--color-black);
-    background-color: var(--color-white);
+    color:var(--color-black);
+    background-color: #ededf3;
     border: 4px solid var(--color-grey);
 }
 
@@ -306,9 +333,29 @@ button {
     width: 80%;
     max-width: 300px;
 }
+
+.frequency-modal h3{
+    padding: 10px;
+    font-size: 24px;
+}
+
 .frequency-modal button {
     margin-top: 10px;
+    border-radius: 24px;
     width: 100%;
+}
+
+.frequency-modal .ok-btn{
+    margin-top: 20px;
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 4px solid var(--color-grey);
+}
+
+.frequency-modal .cancel-btn{
+    color:var(--color-black);
+    background-color: #ededf3;
+    border: 4px solid var(--color-grey);
 }
 
 #intervalContainer label {
@@ -333,9 +380,28 @@ button {
     max-width: 300px;
 }
 
+.unit-modal h3{
+    padding: 10px;
+    font-size: 24px;
+}
+
 .unit-modal button {
     margin-top: 10px;
+    border-radius: 24px;
     width: 100%;
+}
+
+.unit-modal .ok-btn{
+    margin-top: 20px;
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 4px solid var(--color-grey);
+}
+
+.unit-modal .cancel-btn{
+    color:var(--color-black);
+    background-color: #ededf3;
+    border: 4px solid var(--color-grey);
 }
 
 .hidden {
@@ -344,4 +410,8 @@ button {
 
 .hidden label{
     color: var(--color-black);
+}
+
+body.modal-open{
+    
 }
