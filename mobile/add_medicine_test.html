@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    <link rel="stylesheet" href="./styles/add_medicine.css">
+    <!-- /styles -->
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- /script -->
+    <title>ADD Medication Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- -------------------------------- IMAGE SECTION ------------------------------------------ -->
+        <div class="image-container">
+            <img id="medImage" src="../images/add_image.png" alt="Medication">
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+        <!-- -------------------------------- Medication Name SECTION ------------------------------------------ -->
+        <label>Medication Name</label>
+        <input type="text" id="medName" placeholder="Enter medication name">
+
+        <!-- -------------------------------- UNIT SECTION ------------------------------------------ -->
+        <label>Unit</label>
+        <input type="text" id="unitInput" readonly placeholder="Select Unit" onclick="openUnitModal()">
+
+        <div class="modal-overlay" id="modalOverlay" onclick="closeUnitModal()"></div>
+
+        <div class="unit-modal" id="unitModal">
+            <h3>Select Unit</h3>
+            <select id="unitSelect">
+                <option value="pill">pill</option>
+                <option value="piece">piece</option>
+                <option value="dose">dose</option>
+                <option value="ml">ml</option>
+                <option value="mg">mg</option>
+            </select>
+            <button onclick="setUnit()">OK</button>
+            <button onclick="closeUnitModal()">Close</button>
+        </div>
+
+
+        <!-- -------------------------------- ADD TIME & DOSE SECTION ------------------------------------------ -->
+
+        <div class="modal" id="timeModal">
+            <h3>Select Time & Dose</h3>
+            <label>Time</label>
+            <input type="time" id="timeInput">
+            <label>Dose</label>
+            <input type="number" id="doseInput" min="1" value="1">
+            <button onclick="addTimeDose()">OK</button>
+        </div>
+
+        <div class="time-dose-container">
+            <label class="label-time">Time</label>
+            <label class="label-dose">Dose</label>
+            <label class="label-none"></label>
+        </div>
+
+        <div class="time-list" id="timeList"></div>
+
+        <div class="modal-overlay" id="modalOverlay" onclick="closeTimeModals()"></div>
+
+
+        <button class="add-time-button" onclick="openModaltime()">+ Add Time & Dose</button>
+
+
+        <!-- -------------------------------- FREQUENCY SECTION ------------------------------------------ -->
+
+        <label>Frequency</label>
+        <input type="text" id="frequencyInput" readonly placeholder="Select frequency"
+            onclick="openModal('frequencyModal')">
+
+        <div class="modal-overlay" id="modalOverlay" onclick="closeFrequencyModal()"></div>
+        <!-- Frequency Modal -->
+        <div class="frequency-modal" id="frequencyModal">
+            <h3>Select Frequency</h3>
+            <select id="frequencySelect" onchange="handleFrequencyChange()">
+                <option value="Everyday">Everyday</option>
+                <option value="Every X Day">Every X Day</option>
+                <option value="Every X Week">Every X Week</option>
+                <option value="Every X Month">Every X Month</option>
+                <option value="Only as needed">Only as needed</option>
+            </select>
+
+            <div id="intervalContainer" class="hidden">
+                <label>Set Interval:</label>
+                <select id="intervalSelect"></select>
+            </div>
+
+            <button onclick="setFrequency()">OK</button>
+            <button onclick="closeModal('frequencyModal')">Close</button>
+
+        </div>
+
+        <!-- -------------------------------- DURATION SECTION ------------------------------------------ -->
+
+        <label>Duration</label>
+        <input type="text" id="durationInput" readonly placeholder="Select duration" onclick="openDurationModal()">
+
+        <div class="modal-overlay" id="modalOverlay" onclick="closeDurationModal()"></div>
+
+        <div class="duration-modal" id="durationModal">
+            <h3>Select Duration (Days)</h3>
+            <select id="durationSelect"></select>
+            <button onclick="setDuration()">OK</button>
+            <button onclick="closeDurationModal()">Close</button>
+        </div>
+
+        <!-- -------------------------------- ADD NOTE SECTION ------------------------------------------ -->
+        <label>Note</label>
+        <input type="text" id="noteInput" placeholder="Enter Note">
+
+
+        <!-- -------------------------------- SAVE CANCEL RESET BUTTON SECTION ------------------------------------------ -->
+        <div class="button-group">
+            <button class="save" onclick="saveData()">Save</button>
+            <button class="cancel" onclick="cancelForm()">Cancel</button>
+            <button class="reset" onclick="resetForm()">Reset</button>
+            <button class="test" onclick="test()">Test</button>
+        </div>
+    </div>
+
+    <script src="./scripts/add_medicine.js"></script>
+    <script>
+        if (AppInventor) {
+            alert(AppInventor)
+        }
+    </script>
+</body>
+
+</html>
