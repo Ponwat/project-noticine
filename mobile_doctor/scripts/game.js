@@ -139,17 +139,17 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 }
 
-function showScore(){
-    resetState();
+// function showScore(){
+//     resetState();
 
-    saveLatestScore(score);
+//     saveLatestScore(score);
 
-    let latestScore = getLatestScore();
+//     let latestScore = getLatestScore();
 
-    questionElement.innerHTML = `You scored ${latestScore} out of ${questions.length}!`;;
-    nextButton.innerHTML = "play Again";
-    nextButton.style.display = "block";
-}
+//     questionElement.innerHTML = `You scored ${latestScore} out of ${questions.length}!`;;
+//     nextButton.innerHTML = "play Again";
+//     nextButton.style.display = "block";
+// }
 
 function handleNextButton(){
     currentQuestionIndex++;
@@ -169,11 +169,25 @@ nextButton.addEventListener("click", ()=>{
 })
 
 function saveLatestScore(score) {
-    localStorage.setItem("latestScore", score);
+    let totalScore = parseInt(localStorage.getItem("totalScore")) || 0;
+    totalScore += score; // บวกคะแนนใหม่เข้าไป
+    localStorage.setItem("totalScore", totalScore);
 }
 
 function getLatestScore() {
-    return localStorage.getItem("latestScore") || 0;
+    return parseInt(localStorage.getItem("totalScore")) || 0;
+}
+
+function showScore(){
+    resetState();
+
+    saveLatestScore(score); // บันทึกคะแนนล่าสุดลง totalScore
+
+    let totalScore = getLatestScore(); // ดึงค่า totalScore มาแสดง
+
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}! <br> Total Score: ${totalScore}`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
 }
 
 startQuiz();
