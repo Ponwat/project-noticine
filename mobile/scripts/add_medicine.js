@@ -2,16 +2,14 @@
 document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     
-    document.getElementById('medImage').src = URL.createObjectURL(file);
-    // if (file) {
-    //     const reader = new FileReader();
-    //     reader.onload = function(e) {
-    //         newSrc = downscaleImage(e.target.result, 200, "image/jpeg");
-    //         console.log(newSrc)
-    //         document.getElementById('medImage').src = newSrc;
-    //     }
-    //     reader.readAsDataURL(file);
-    // }
+    // document.getElementById('medImage').src = URL.createObjectURL(file);
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('medImage').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
 });
 
 // Take an image URL, downscale it to the given width, and return a new image URL.
@@ -217,29 +215,31 @@ function closeModal(modalId) {
 //-------------------------------------- JSON --------------------------------
 let today = new Date();
 let datafromLS = {};
+let dataList = "";
 function JSONsaveMedicineList(data) {
     // let data_medicine_list = `{"medicine-list": [${data}]}`;
-    // console.log(data_medicine_list);
-    // localStorage.setItem("Medicine", JSON.stringify(data_medicine_list));
-    localStorage.setItem("Medicine", JSON.stringify(data));
+    let data_medicine_list = "";
+    // console.log(dataList["Medicine"]);
+    if (dataList === "") {
+        data_medicine_list = `{"Medicine":[${data}]}`;
+    }else {
+        data_medicine_list = `{"Medicine":[${dataList},${data}]}`;
+    }
+    localStorage.setItem("Medicine", data_medicine_list);
+    // localStorage.setItem("Medicine", JSON.stringify(data));
 }
-localStorage.getItem("Medicine");
-// //name dose note date time
-// function JSONsaveEventList(data) {
-//     let data_event_list = {};
-//     if (data["medicine-list"]){ 
-//         data["medicine-list"].forEach((i) => {
-            
-//           });
-//     }
-// }
 
 // {{date : [{time: [name, dose, note]}, {time: [name, dose, note]}]}}
 
 onload = function () {
     if (localStorage.getItem("Medicine") != null) {
         datafromLS = JSON.parse(localStorage.getItem("Medicine"));
-        alert(datafromLS);
+        for (let i = 0; i < datafromLS.Medicine.length; i++) {
+            dataList += JSON.stringify(datafromLS.Medicine[i]); 
+            if (i != datafromLS.Medicine.length - 1){
+                dataList += ",";
+            }
+        }
     }
 }
 
@@ -263,10 +263,6 @@ function resetForm() {
     document.getElementById("imageInput").value = "";
 }
 
-
-
-
-
 function saveData() {
     let medName = document.getElementById("medName").value.trim();
     let unit = document.getElementById("unitInput").value.trim();
@@ -277,7 +273,7 @@ function saveData() {
 
     if (medName === "" || unit === "" || timeList.length === 0 || frequency === "" || duration === "") {
         alert("Please fill in all fields before saving.");
-        return;
+        return; 
     }
 
     let timeDoseList = [];
@@ -286,17 +282,16 @@ function saveData() {
         let dose = item.querySelector(".dose").textContent;
         timeDoseList.push({ time, dose });
     }
-    console.log("Time List:", timeDoseList);
     let data = `{
-      "medicine-name": "${medName}",
-      "time-dose": [
+      "medicine_name": "${medName}",
+      "time_dose": [
         ${timeDoseList.map(item => `{"time": "${item.time}", "dose": "${item.dose}"}`).join(",")}
       ],
       "frequency": "${frequency}",
       "duration": "${duration}",
       "note": "${note}",
       "image": "${document.getElementById("medImage").src}",
-      "Start-date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+      "Start_date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
     }`;
 
     JSONsaveMedicineList(data);
