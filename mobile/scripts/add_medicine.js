@@ -206,7 +206,7 @@ function JSONsaveMedicineList(data) {
 onload = function () {
     if (localStorage.getItem("Medicine") != null) {
         datafromLS = JSON.parse(localStorage.getItem("Medicine"));
-        console.log(datafromLS);
+        alert(datafromLS);
     }
 }
 
@@ -271,4 +271,8 @@ function saveData() {
     alert("Data saved successfully!");
 
     window.location.href = "home.html";
+}
+
+document.onload = function () {
+
 }
