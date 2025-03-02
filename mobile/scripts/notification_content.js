@@ -9,6 +9,10 @@ $(document).ready(function () {
   });
 });
 
+onload = function () {
+  
+};
+
 
 
 function AddNotificationCard(medicine_img, medicine_title, medicine_quentity, medicine_note) {
