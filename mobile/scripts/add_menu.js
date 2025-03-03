@@ -9,6 +9,13 @@ $(document).ready(function () {
     $(".menu-toggle").toggle();
     $("#add-button").toggleClass("open");
   });
+
+  $("#scan-template").click(function () { 
+    alert("scan");
+    if (AppInventor) {
+      AppInventor.setWebViewString("scan");
+    }
+  })
 });
 
 function AddMedicine() {
