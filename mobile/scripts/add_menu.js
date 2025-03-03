@@ -1,19 +1,24 @@
 $(document).ready(function () {
-    $("#add-button").click(
-        function () {
-            $("#add-menu").toggleClass("open");
-        }
-    );
+  $("#add-button").click(function () {
+    $("#add-menu-overlay").toggle();
+    $(".menu-toggle").toggle();
+    $("#add-button").toggleClass("close");
+  });
+  $("#add-menu-overlay").click(function () {
+    $("#add-menu-overlay").toggle();
+    $(".menu-toggle").toggle();
+    $("#add-button").toggleClass("close");
+  });
 });
 
 function AddMedicine() {
-    const medicine_img = $("#medicine-img").val();
-    const medicine_title = $("#medicine-title").val();
-    const medicine_quentity = $("#medicine-quentity").val();
-    const medicine_note = $("#medicine-note").val();
+  const medicine_img = $("#medicine-img").val();
+  const medicine_title = $("#medicine-title").val();
+  const medicine_quentity = $("#medicine-quentity").val();
+  const medicine_note = $("#medicine-note").val();
 
-    $(".notification-content").append(
-        `<div class="notification-card">
+  $(".notification-content").append(
+    `<div class="notification-card">
             <div class="info-block">
                 <img class="medicine-img"
                     src="${medicine_img}"
@@ -37,6 +42,6 @@ function AddMedicine() {
                         class="icon"></button>
             </div>
         </div>`
-    );
-    $("#add-menu").toggleClass("open");
+  );
+  $("#add-menu").toggleClass("open");
 }
