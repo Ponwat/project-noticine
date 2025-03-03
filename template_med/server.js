@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 const port = process.env.PORT || 5000;
 const URL = process.env.MONGODB_URI;
@@ -22,7 +23,7 @@ const connectDB = async () => {
 
 connectDB()
   .then(() => {
-    app.listen(port, () => {
+    app.listen(port, "0.0.0.0", () => {
       console.log(` Server running on port ${port}`);
     });
   })
@@ -33,14 +34,16 @@ connectDB()
 // Schema สำหรับยาแต่ละตัว
 const medicineSchema = new mongoose.Schema({
   Name: { type: String, required: true },
-  Description: { type: String },
+  Unit: { type: String, required: true },
   times: [
     {
       time: { type: String, required: true },
       dose: { type: Number, required: true },
     },
   ],
-  id: { type: Number, required: true },
+  frequency: { type: String, required: true },
+  duration: { type: String, required: true },
+  note: { type: String },
 });
 
 // Schema สำหรับ Template ยา
@@ -54,107 +57,97 @@ const templateSchema = new mongoose.Schema({
 // Model สำหรับ Template ยา
 const TemplateModel = mongoose.model("Template", templateSchema);
 
-async function saveTemplate(templateData) {
+// ✅ ฟังก์ชันบันทึก Template พร้อมคืนค่า id
+app.post("/saveTemplate", async (req, res) => {
   try {
-    const newTemplate = new TemplateModel({
-      Name: templateData.Name,
-      Description: templateData.Description,
-      id: templateData.id,
-      medications: templateData.medications,
-    });
+    const templateData = req.body;
 
+    // ตรวจสอบว่าตัวแปร medications เป็นอาร์เรย์หรือไม่
+    if (templateData.medications && !Array.isArray(templateData.medications)) {
+      return res.status(400).json({ error: "Invalid medications format" });
+    }
+
+    // ถ้ามี medications และไม่ใช่ array ว่าง ให้ตรวจสอบข้อมูลภายใน
+    if (Array.isArray(templateData.medications) && templateData.medications.length > 0) {
+      templateData.medications = templateData.medications.map((med) => ({
+        ...med,
+        id: new mongoose.Types.ObjectId().toHexString(), // ✅ เพิ่ม id อัตโนมัติให้แต่ละตัว
+      }));
+    }
+
+    // หา id ล่าสุดและเพิ่มค่าใหม่
+    const lastTemplate = await TemplateModel.findOne().sort({ id: -1 });
+    const newId = lastTemplate ? lastTemplate.id + 1 : 1;
+
+    const newTemplate = new TemplateModel({ ...templateData, id: newId });
     await newTemplate.save();
-    console.log("✅ Template saved successfully");
+
+    console.log("✅ Template saved successfully with ID:", newId);
+    res.json({ message: "Template saved successfully", id: newId });
   } catch (error) {
     console.error("❌ Error saving template:", error);
-  }
-}
-
-app.post("/saveTemplate", (req, res) => {
-  const templateData = req.body;
-  saveTemplate(templateData)
-    .then(() => res.json({ message: "Template saved successfully" }))
-    .catch((error) => res.status(500).json({ error: error.message }));
-});
-
-// ฟังก์ชันสำหรับดึง Template ตาม ID และส่ง ID กลับไปด้วย
-async function getTemplateById(id) {
-  try {
-    const template = await TemplateModel.findOne({ id: id });
-    if (!template) {
-      return null;
-    }
-    // ส่ง Template กลับไปพร้อม ID
-    return template;
-  } catch (error) {
-    console.error("❌ Error getting template:", error);
-    return null;
-  }
-}
-
-app.get("/getTemplate/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const template = await getTemplateById(id);
-  if (template) {
-    res.json(template);
-  } else {
-    res.status(404).json({ message: "Template not found" });
+    res.status(500).json({ error: error.message });
   }
 });
 
-// ฟังก์ชันสำหรับดึง Template ทั้งหมด
-async function getAllTemplateIds() {
+// ✅ ฟังก์ชันดึง Template ทั้งหมด
+app.get("/getAllTemplates", async (req, res) => {
   try {
-    // ดึง Template ทั้งหมดจากฐานข้อมูล
     const templates = await TemplateModel.find();
-    return templates;
+    res.json(templates);
   } catch (error) {
     console.error("❌ Error getting templates:", error);
-    return [];
+    res.status(500).json({ error: "Failed to fetch templates" });
   }
-}
-
-// API endpoint สำหรับดึง Template ทั้งหมด
-app.get("/getAllTemplateIds", async (req, res) => {
-  const templates = await getAllTemplateIds();
-  res.json(templates);
 });
 
-// ฟังก์ชันสำหรับแก้ไข Template
-async function editTemplate(id, newTemplateData) {
+// ✅ ฟังก์ชันดึง Template ตาม ID
+app.get("/getTemplate/:id", async (req, res) => {
   try {
-    // ค้นหา Template ด้วย ID
-    const existingTemplate = await TemplateModel.findOne({ id: id });
+    const id = parseInt(req.params.id);
+    const template = await TemplateModel.findOne({ id });
 
-    if (!existingTemplate) {
-      return null; // ไม่พบ Template ที่ต้องการแก้ไข
+    if (!template) {
+      return res.status(404).json({ message: "Template not found" });
     }
 
-    // อัปเดตข้อมูล Template ด้วยข้อมูลใหม่
+    res.json(template);
+  } catch (error) {
+    console.error("❌ Error getting template:", error);
+    res.status(500).json({ error: "Failed to fetch template" });
+  }
+});
+
+// ✅ ฟังก์ชันแก้ไข Template
+app.put("/editTemplate/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const newTemplateData = req.body;
+
+    const existingTemplate = await TemplateModel.findOne({ id });
+
+    if (!existingTemplate) {
+      return res.status(404).json({ message: "Template not found" });
+    }
+
+    if (!Array.isArray(newTemplateData.medications)) {
+      return res.status(400).json({ error: "Invalid medications format" });
+    }
+
+    newTemplateData.medications = newTemplateData.medications.map((med) => ({
+      ...med,
+      id: med.id || new mongoose.Types.ObjectId().toHexString(), // ✅ เพิ่ม id ให้ยาที่ไม่มี id
+    }));
+
     existingTemplate.Name = newTemplateData.Name;
     existingTemplate.Description = newTemplateData.Description;
     existingTemplate.medications = newTemplateData.medications;
 
-    // บันทึกการเปลี่ยนแปลง
     await existingTemplate.save();
     console.log("✅ Template edited successfully");
-    return existingTemplate; // ส่ง Template ที่แก้ไขแล้วกลับไป
+    res.json(existingTemplate);
   } catch (error) {
     console.error("❌ Error editing template:", error);
-    return null;
-  }
-}
-
-// API endpoint สำหรับแก้ไข Template
-app.put("/editTemplate/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const newTemplateData = req.body;
-
-  const editedTemplate = await editTemplate(id, newTemplateData);
-
-  if (editedTemplate) {
-    res.json(editedTemplate);
-  } else {
-    res.status(404).json({ message: "Template not found or edit failed" });
+    res.status(500).json({ error: "Failed to edit template" });
   }
 });
