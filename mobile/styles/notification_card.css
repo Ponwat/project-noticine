@@ -83,4 +83,12 @@
 .notification-card > .select-button > .arrow-btn > .icon {
     width: 30px;
     height: 30px;
+    opacity: 0.4;
+    border: 3px solid var(--color-main);
+    border-radius: 10px;
 }
+
+.notification-card > .select-button > .action-true > .icon {
+    opacity: 1;
+}
+

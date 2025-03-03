@@ -171,29 +171,74 @@ function closeFrequencyModal() {
 
 //-------------------------------------- DURATION SECTION --------------------------------
 function setDuration() {
-    let selectedValue = document.getElementById("durationSelect").value;
-    document.getElementById("durationInput").value = selectedValue + " days";
-    document.getElementById("durationModal").style.display = "none";
+    let duration = document.getElementById("durationSelect").value;
+    let interval = document.getElementById("durationIntervalSelect").value;
+    let durationInput = document.getElementById("durationInput");
+
+    if (duration === "X Days" || duration === "X Weeks" || duration === "X Months") {
+        durationInput.value = duration.replace("X", interval);
+    } else {
+        durationInput.value = duration;
+    }
+    
     closeDurationModal();
 }
 
-function populateDurationOptions() {
-    let durationSelect = document.getElementById("durationSelect");
-    durationSelect.innerHTML = "";
-    for (let i = 2; i <= 100; i++) {
+function checkDuration() {
+    const durationSelect = document.getElementById('durationSelect');
+    const durationIntervalContainer = document.getElementById('durationIntervalContainer');
+
+    if (durationSelect.value === 'X Days' || durationSelect.value === 'X Weeks' || durationSelect.value === 'X Months') {
+        durationIntervalContainer.style.display = 'block';
+    } else {
+        durationIntervalContainer.style.display = 'none';
+        document.getElementById('durationIntervalSelect').value = '';
+    }
+}
+
+function updateDuration() {
+    const durationInterval = document.getElementById('durationIntervalSelect').value;
+    const durationSelect = document.getElementById('durationSelect');
+
+    if (durationInterval >= 1 && durationInterval <= 365) { 
+        durationSelect.options[durationSelect.selectedIndex].text = `Every ${durationInterval} ${durationSelect.value.replace('X ', '')}`;
+    }
+}
+
+
+function handleDurationChange() {
+    let selectedDuration = document.getElementById("durationSelect").value;
+    let intervalContainer = document.getElementById("durationIntervalContainer");
+    
+    if (selectedDuration === "X Days") {
+        updateDurationIntervalOptions(2, 30);
+        intervalContainer.classList.remove("hidden");
+    } else if (selectedDuration === "X Weeks") {
+        updateDurationIntervalOptions(2, 21);
+        intervalContainer.classList.remove("hidden");
+    } else if (selectedDuration === "X Months") {
+        updateDurationIntervalOptions(2, 12);
+        intervalContainer.classList.remove("hidden");
+    } else {
+        intervalContainer.classList.add("hidden");
+    }
+}
+
+function updateDurationIntervalOptions(min, max) {
+    let select = document.getElementById("durationIntervalSelect");
+    select.innerHTML = "";
+    for (let i = min; i <= max; i++) {
         let option = document.createElement("option");
         option.value = i;
-        option.textContent = i + " days";
-        durationSelect.appendChild(option);
+        option.textContent = i;
+        select.appendChild(option);
     }
 }
 
 function openDurationModal() {
-    populateDurationOptions();
     document.getElementById("durationModal").style.display = "block";
-    document.getElementById("modalOverlay").style.display = "block";    
+    document.getElementById("modalOverlay").style.display = "block";
 }
-
 
 function closeDurationModal() {
     document.getElementById("durationModal").style.display = "none";
