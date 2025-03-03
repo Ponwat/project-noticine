@@ -299,6 +299,10 @@ function saveData() {
     alert("Data saved successfully!");
 
     window.location.href = "home.html";
+
+    if (AppInventor) {
+        AppInventor.setWebViewString("saveDataOnCookie");
+    }
 }
 
 function saveDataOnCookie() {
@@ -308,4 +312,10 @@ function saveDataOnCookie() {
     });
     document.cookie = "local=" + JSON.stringify(array);
     console.log(document.cookie);
+}
+
+function buttonClick() {
+    if (AppInventor) {
+        AppInventor.setWebViewString("buttonClick");
+    }
 }
