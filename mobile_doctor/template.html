@@ -50,7 +50,7 @@
                         <span class="medicine-note">Note: <span class="note">My mate note</span></span>
                     </div>
                 </div>
-                <img src="/icons/delete.svg" alt="" srcset="">
+                <img src="/icons/delete.svg" alt="" srcset="" class="delete-icon">
             </div>
         </div>
     </section>
@@ -62,14 +62,42 @@
         let template;
         if (id) {
             template = await getId(id);
-            console.log(template);
-            if (!template) {
-                alert("Template not found");
+            if (template.message) {
+                alert(template.message);
                 window.location.href = "./home.html";
             }
         }
         document.querySelector(".title").textContent = template.Name;
         document.querySelector(".description").textContent = template.Description;
+
+        const notificationCards = document.querySelector(".notification-cards");
+        notificationCards.innerHTML = "";
+        template.medications.forEach((medication) => {
+            const notificationCard = document.createElement("div");
+            notificationCard.classList.add("notification-card");
+            notificationCard.innerHTML = `
+                <div class="data" id="medication-${medication.id}">
+                    <img src="/images/add_image.png" class="medicine-image" alt="medicine-image">
+                    <div class="text-data">
+                        <span class="medicine-name">${medication.Name}</span>
+                        <span class="medicine-quantity">Quantity: 
+                            <div class="quantities">
+                                ${medication.times.map(({time, dose}) => `<span class="quantity">${time}<!-- ${dose} ${medication.Unit} --></span>`).join("")}
+                            </div>
+                        </span>
+                        <span class="medicine-note">Note: <span class="note">${medication.note ? medication.note : "-"}</span></span>
+                    </div>
+                </div>
+                <img src="/icons/delete.svg" alt="" srcset="" class="delete-icon">
+            `;
+            const deleteIcon = notificationCard.querySelector(".delete-icon");
+            deleteIcon.addEventListener("click", async () => {
+                template.medications = template.medications.filter((med) => med.id !== medication.id);
+                notificationCard.remove();
+                console.log(template);
+            });
+            notificationCards.appendChild(notificationCard);
+        });
 
         const homeIcon = document.getElementById("home-icon");
         homeIcon.addEventListener("click", () => {
@@ -79,8 +107,13 @@
         const saveIcon = document.getElementById("save-icon");
         saveIcon.addEventListener("click", async () => {
             const result = await editTemplateId(template.id, template);
-            // console.log(result);
-            window.location.href = "./home.html";
+            console.log(result)
+            if (result.message) {
+                alert(result.message);
+                return;
+            }   
+            alert("Template saved successfully");
+            // window.location.href = "./home.html";
         });
 
         // async function createTemplateButton() {

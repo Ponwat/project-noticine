@@ -99,6 +99,7 @@
 .notification-card > .data > .text-data > .medicine-quantity > .quantities {
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
 }
 
 .notification-card > .data > .text-data > .medicine-quantity > .quantities > .quantity {
@@ -110,6 +111,8 @@
     color: var(--color-white);
     font-weight: 600;
     font-size: 15px;
+
+    text-wrap: nowrap;
 }
 
 .notification-card > .data > .text-data > .medicine-note {
