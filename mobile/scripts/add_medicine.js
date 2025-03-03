@@ -291,7 +291,7 @@ function saveData() {
       "duration": "${duration}",
       "note": "${note}",
       "image": "${document.getElementById("medImage").src}",
-      "Start_date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+      "Start_date": "${today.getDate()} ${today.getMonth() + 1} ${today.getFullYear()}"
     }`;
 
     JSONsaveMedicineList(data);

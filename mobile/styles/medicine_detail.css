@@ -93,10 +93,18 @@
     font-size: 14px;
 }
 
+#medicine-detail > .medicine-detail > .info-block > .info > .row > .column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 5px;
+}
+
 #medicine-detail > .medicine-detail > .info-block > .info > .row > .title-label {
     color: var(--color-main);
     font-size: 12px;
     font-weight: 600;
+
 }
 
 #medicine-detail > .medicine-detail > .info-block > .info > .row > .normal-text {
@@ -104,33 +112,26 @@
     font-weight: 500;
 }
 
-#medicine-detail > .medicine-detail > .info-block > .info > .row > .block-text {
-    width: auto;
+#medicine-detail > .medicine-detail > .info-block > .info > .row > .column > .block-text {
+    width: fit-content;
     height: 21px;
-    margin: 0 2px;
-    padding: 2px 5px;
+    padding: 0 4px;
     border-radius: 5px;
     background-color: var(--color-main);
     color: var(--color-white);
     font-weight: 600;
 }
-/* 
-#medicine-detail > .medicine-detail > .select-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
-#medicine-detail > .medicine-detail > .select-button > .arrow-btn {
+#medicine-detail > .medicine-detail > .select-button {
+    height: 30px;
     background-color: var(--color-white);
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
+    color: var(--color-secondary);
+    border-radius: 10px;
 }
 
-#medicine-detail > .medicine-detail > .select-button > .arrow-btn > .icon {
-    width: 30px;
-    height: 30px;
-} */
+#medicine-detail > .medicine-detail > .select-button:hover {
+    background-color: var(--color-grey);
+    color: var(--color-white);
+}

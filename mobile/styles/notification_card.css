@@ -16,6 +16,8 @@
 .notification-card > .info-block {
     display: flex;
     flex-direction: row;
+    background-color: var(--color-white);
+    border: none;
 }
 
 .notification-card > .info-block > .medicine-img{
@@ -30,6 +32,7 @@
 .notification-card > .info-block > .info {
     display: flex;
     flex-direction: column;
+    align-items: start;
     padding: 5px;
     gap: 5px;
 }
