@@ -27,12 +27,13 @@
   </head>
   <body>
     <div id="title-bar">
+        <img src="/icons/home_fill.svg" alt="profile-icon" class="icon" id="home-icon">
       <div class="inner">
         <!-- <img src="/icons/setting.svg" alt="setting-icon" class="icon"> -->
         <div class="title">Template Name</div>
         <div class="description">Description:...</div>
-        <!-- <img src="/icons/profile.svg" alt="profile-icon" class="icon"> -->
       </div>
+        <img src="/icons/save.svg" alt="profile-icon" class="icon" id="save-icon">
     </div>
     <section id="content">
         <div id="add-medicine" class="menu-button">
@@ -53,5 +54,59 @@
             </div>
         </div>
     </section>
+
+    <script src="./scripts/template_functions.js"></script>
+    <script type="module">
+        const param = new URLSearchParams(window.location.search);
+        const id = param.get("id");
+        let template;
+        if (id) {
+            template = await getId(id);
+            console.log(template);
+            if (!template) {
+                alert("Template not found");
+                window.location.href = "./home.html";
+            }
+        }
+        document.querySelector(".title").textContent = template.Name;
+        document.querySelector(".description").textContent = template.Description;
+
+        const homeIcon = document.getElementById("home-icon");
+        homeIcon.addEventListener("click", () => {
+            window.location.href = "./home.html";
+        });
+
+        const saveIcon = document.getElementById("save-icon");
+        saveIcon.addEventListener("click", async () => {
+            const result = await editTemplateId(template.id, template);
+            // console.log(result);
+            window.location.href = "./home.html";
+        });
+
+        // async function createTemplateButton() {
+        //     const templateName = document.getElementById("template-name").value;
+        //     const templateDescription = document.getElementById("template-description").value;
+
+        //     const this_template = {
+        //         Name: templateName,
+        //         Description: templateDescription,
+        //         medications: [],
+        //     };
+
+        //     const response = await fetch("http://localhost:3000/templates", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify(this_template),
+        //     });
+
+        //     if (response.ok) {
+        //         window.location.href = "./home.html";
+        //     } else {
+        //         alert("Error: " + response.status);
+        //     }
+        // }
+    </script>
   </body>
 </html>

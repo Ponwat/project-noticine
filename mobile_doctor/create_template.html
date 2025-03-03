@@ -34,31 +34,43 @@
             <input type="text" name="template-description" id="template-description">
             <div class="button-group">
                 <button class="cancel" onclick="cancelForm()">Cancel</button>
-                <button class="save" onclick="saveData()">Save</button>
+                <button class="save" onclick="createTemplateButton()">Save</button>
             </div>
         </div>
     </section>
 
+    <script src="./scripts/template_functions.js"></script>
     <script>
+
         function cancelForm() {
-            window.location.href = "./get_medicine_id.html";
+            window.location.href = "./home.html";
         }
 
-        function saveData() {
-            let templateName = document.getElementById("template-name").value;
-            let templateDescription = document.getElementById("template-description").value;
+        async function createTemplateButton() {
+            const templateName = document.getElementById("template-name").value;
+            const templateDescription = document.getElementById("template-description").value;
 
-            if (templateName == "" || templateDescription == "") {
-                alert("Please fill all the fields");
-                return;
-            }
 
-            let data = {
-                "template_name": templateName,
-                "template_description": templateDescription
-            }
 
-            
+
+            const this_template = {
+                Name: templateName,
+                Description: templateDescription,
+                medications: [],
+            };
+
+            const message = await createTemplate(this_template)
+            console.log(message.id);
+
+            window.location.href = "./template.html?id=" + message.id;
+
+            // if (templateName == "" || templateDescription == "") {
+            //     alert("Please fill all the fields");
+            //     return;
+            // }
+
+
+
         }   
     </script>
   </body>

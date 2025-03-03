@@ -20,7 +20,7 @@ async function getId(id) {
   return await fetch(url).then((response) => response.json());
 }
 
-async function createTemplate() {
+async function createTemplate({Name, Description, medications}) {
   url = `${serverURL}/saveTemplate`;
 
   const template = {
@@ -43,7 +43,7 @@ async function createTemplate() {
     ],
   };
 
-  data = await fetch(url, {
+  id = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,8 @@ async function createTemplate() {
     },
     body: JSON.stringify(template),
   }).then((response) => response.json());
-  console.log(data);
+
+  return id
 }
 
 async function editTemplate() {

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./styles/all_style.css">
     <link rel="stylesheet" href="./styles/variables.css">
 
+    <link rel="stylesheet" href="./styles/medicine_detail.css">
+
     <link rel="stylesheet" href="./styles/title_bar.css">
     <link rel="stylesheet" href="./styles/add_menu.css">
     <link rel="stylesheet" href="./styles/content_section.css">
@@ -34,14 +36,14 @@
     <!-- /title-bar -->
     <!-- add-menu -->
     <div id="add-menu">
-      <div class="template-button ">
+      <div id="create-template-button" class="template-button ">
         <img src="/icons/pill.svg" alt="" srcset="">
         <div class="label">Create Template</div>
       </div>
-      <div class="template-button">
+      <!-- <div class="template-button">
         <img src="/icons/qr_code_black.svg" alt="" srcset="">
         <div class="label">Scan Template</div>
-      </div>
+      </div> -->
       <div id="add-button">
         <img src="/icons/plus.svg" alt="add-icon" class="icon">
       </div>
@@ -63,18 +65,72 @@
       <!-- /notification-card -->
     </section>
     <!-- /content -->
+     <!-- medicine-detail -->
+    <div class="medicine-detail">
+        <img src="/icons/bold_plus.svg" class="close-button">
+        <div class="title">Template</div>
+        <div class="description"><span class="label">Description: </span><span class="value">Take after meals</span></div>
+        <img src="/images/test_qr_code.png" class="qr-code">
+        <div class="medicine-label">Medicine:</div>
+        <ul class="medicine-list">
+            <li class="medicine-name">medicine 1</li>
+            <li class="medicine-name">medicine 2</li>
+            <li class="medicine-name">medicine 3</li>
+        </ul>
+    </div>
+     <!-- /medicine-detail -->
 
     <!-- scripts -->
     <script src="./scripts/add_menu.js"></script>
     <script src="./scripts/template_functions.js"></script>
     <script src="./scripts/notification_card.js"></script>
     <script type="module">
+      const create_template_button = document.getElementById("create-template-button");
+      create_template_button.addEventListener("click", () => {
+        window.location.href = "./create_template.html";
+      });
+
+      const add_menu = document.getElementById("add-menu");
+      add_button.addEventListener("click", () => { });
+
+      const medicine_detail = document.getElementsByClassName("medicine-detail")[0];
+      medicine_detail.style.display = "none";
+
+      const medicine_detail_close_button = document.getElementsByClassName("close-button")[0];
+      medicine_detail_close_button.addEventListener("click", () => {
+        medicine_detail.style.display = "none";
+      });
+
+      const medicine_detail_title = medicine_detail.getElementsByClassName("title")[0];
+      const medicine_detail_description = medicine_detail.getElementsByClassName("description")[0];
+      const medicine_detail_qr_code = medicine_detail.getElementsByClassName("qr-code")[0];
+      const medicine_detail_medicine_list = medicine_detail.getElementsByClassName("medicine-list")[0];
+      medicine_detail_medicine_list.innerHTML = "";
+
+      // const medicine_detail_
+      async function notificationCardClick(template) {
+        medicine_detail_title.innerHTML = template.Name;
+        medicine_detail_description.innerHTML = template.Description;
+        medicine_detail_qr_code.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${template.id}`;
+        medicine_detail_medicine_list.innerHTML = "";
+        template.medications.forEach(element => {
+          const medicine_name = document.createElement("li");
+          medicine_name.innerHTML = element.Name;
+          medicine_detail_medicine_list.appendChild(medicine_name);
+        });
+        medicine_detail.style.display = "flex";
+      }
+
       const allTemplates = await getAllTemplate();
       const content = document.getElementById("content");
       content.innerHTML = "";
-      allTemplates.forEach(element => {
-        const notificationCard = createNotificationCard({name:element.Name, description:element.Description});
+      allTemplates.forEach(template => {
+        const notificationCard = createNotificationCard({name:template.Name, description:template.Description});
         document.getElementById("content").appendChild(notificationCard);
+        notificationCard.addEventListener("click", () => {
+          notificationCardClick(template)
+        });
+        console.log(notificationCard);
       });
       console.log(allTemplates);
     </script>
