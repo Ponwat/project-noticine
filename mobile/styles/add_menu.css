@@ -10,6 +10,7 @@
 }
 
 #add-menu > #add-menu-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,6 +21,7 @@
 }
 
 #add-menu > .menu-toggle {
+    display: none;
     z-index: 2;
 }
 
@@ -61,7 +63,7 @@
     z-index: 2;
 }
 
-#add-menu > #add-button.close {
+#add-menu > #add-button.open {
     transform: rotate(45deg);
 }
 

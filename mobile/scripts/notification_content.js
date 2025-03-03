@@ -74,16 +74,17 @@ $(document).ready(function () {
   $("#add-medicine").click(function () {
     window.location.href = "add_medicine.html";
   });
-
-  
 });
 //----------------------------------------------------------------------------------
 function JSONSortTimeDate(day, month, year) {
   let formattedDate = `${day}-${month}-${year}`;
+  console.log(JSON.parse(localStorage.getItem("Medicine")));
   let datafromLS = JSON.parse(localStorage.getItem("Medicine"));
-  if(datafromLS == null){
+  if (datafromLS == null) {
     $("#content").empty();
-    $("#content").append(`<div class="notification-content"><h4 id="notification-text">You don't have events to notify.<br>Please add your medicine</h4></div>`);
+    $("#content").append(
+      `<div class="notification-content"><h4 id="notification-text">You don't have events to notify.<br>Please add your medicine</h4></div>`
+    );
     return;
   }
   let dayselect = new Date(year, month, day);
@@ -120,11 +121,13 @@ function JSONSortTimeDate(day, month, year) {
   console.log(notificationSortTimeDate);
   console.log(timeArray);
   // console.log(datafromLS);
-  if(timeArray == 0){
+  if (timeArray == 0) {
     $("#content").empty();
-    $("#content").append(`<div class="notification-content"><h4 id="notification-text">You don't have to take medicine today.</h4></div>`);
+    $("#content").append(
+      `<div class="notification-content"><h4 id="notification-text">You don't have to take medicine today.</h4></div>`
+    );
     return;
-  }else {
+  } else {
     AddNotification(
       notificationSortTimeDate[formattedDate],
       timeArray,
@@ -148,7 +151,7 @@ function AddNotification(time, medtime, data) {
       `<div class="notification-content"><h4 id="notification-time">${e}</h4>${card}</div>`
     );
   });
-  }
+}
 
 function AddNotificationCard(
   medicine_img,
@@ -156,6 +159,11 @@ function AddNotificationCard(
   medicine_quentity,
   medicine_note
 ) {
+  let actionField = "";
+  if (localStorage.getItem(medicine_title) != "true") {
+    actionField = `<button class="arrow-btn" id="medicine-true"><img src="/icons/checkbox_true.svg" alt="arrow_right" class="icon"></button>
+    <button class="arrow-btn" id="medicine-false"><img src="/icons/checkbox_false.svg" alt="arrow_right" class="icon"></button>`;
+  }
   return `<div class="notification-card">
             <button class="info-block" id="medicine-detail-open" value="${medicine_title}" onclick="OpenMedicineDetail(value)">
                 <img  class="medicine-img" src="${medicine_img}" alt="medicine_img">
@@ -166,9 +174,6 @@ function AddNotificationCard(
                             id="medicine-note">${medicine_note}</span></div>
                 </div>
             </button>
-            <div class="select-button"><button class="arrow-btn" id="medicine-true"><img
-                        src="/icons/checkbox_true.svg" alt="arrow_right" class="icon"></button><button class="arrow-btn"
-                    id="medicine-false"><img src="/icons/checkbox_false.svg" alt="arrow_right"
-                        class="icon"></button></div>
+            <div class="select-button">${actionField}</div>
         </div>`;
 }

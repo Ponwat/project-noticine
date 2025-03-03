@@ -120,16 +120,28 @@
     font-weight: 600;
 }
 
-#medicine-detail > .medicine-detail > .select-button {
+#medicine-detail > .medicine-detail > #action-field > .select-button {
     height: 30px;
-    background-color: var(--color-white);
+    width: 100%;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
-    color: var(--color-secondary);
-    border-radius: 10px;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    opacity: 0.6;
 }
 
-#medicine-detail > .medicine-detail > .select-button:hover {
+#medicine-detail > .medicine-detail > #action-field > .select-button:hover {
     background-color: var(--color-grey);
     color: var(--color-white);
+    opacity: 1;
+}
+
+#medicine-detail > .medicine-detail > #action-field > .text-field {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-main)
 }

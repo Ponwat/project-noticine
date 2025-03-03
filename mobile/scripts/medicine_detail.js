@@ -3,7 +3,6 @@ $(document).ready(function () {
     $("#medicine-detail").css({ display: "none" });
     $(".medicine-detail").remove();
   });
-
 });
 
 function OpenMedicineDetail(targetMedicine) {
@@ -30,8 +29,8 @@ function OpenMedicineDetail(targetMedicine) {
   });
 }
 
-function GetDataFromLocalStorage() {
-  let data = localStorage.getItem("Medicine");
+function GetDataFromLocalStorage(key) {
+  let data = localStorage.getItem(key);
   if (data != null) {
     console.log(JSON.parse(data));
     return JSON.parse(data);
@@ -67,9 +66,18 @@ function ShowMedicineDetail(
     "November",
     "December",
   ];
-  
   let startdate = medicine_startdate.split(" ");
   startdate[1] = months[startdate[1]];
+
+  let actionField = "";
+  if (localStorage.getItem(medicine_title) == "true") {
+    actionField = `<div class="text-field"><h4>Your medicine routine is finished.</h4></div>`;
+  } else {
+    actionField = `<button class="select-button" value="${medicine_title}"  onclick="FinishMedicineRoutine(value)">
+      <h4>I don't need to take this medicine anymore.</h4>
+    </button>`;
+  }
+
   $("#medicine-detail").append(
     `<div class="medicine-detail">
           <img src="/icons/bold_plus.svg" id="medicine-detail-close" class="close-button">
@@ -109,9 +117,17 @@ function ShowMedicineDetail(
               </div>
           </div>
           <hr>
-          <button class="select-button" value="${medicine_title}">
-          <h4>I don't need to take this medicine anymore.</h4>
-          </button>
+          <div id="action-field">${actionField}</div>
       </div>`
   );
+}
+
+function FinishMedicineRoutine(targetmedicine) {
+  if (localStorage.getItem(targetmedicine) != "true") {
+    if (confirm("Are you sure you finished the medicine routine?")) {
+      localStorage.setItem(targetmedicine, "true");
+      console.log(localStorage.getItem(targetmedicine));
+      window.location.href = "home.html";
+    }
+  }
 }
