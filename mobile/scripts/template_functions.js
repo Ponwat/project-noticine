@@ -15,6 +15,7 @@ async function getTemplate() {
   data = await getId(id);
   console.log(data);
 }
+
 async function getId(id) {
   url = `${serverURL}/getTemplate/${id}`;
   return await fetch(url).then((response) => response.json());
