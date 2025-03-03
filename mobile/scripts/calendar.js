@@ -141,6 +141,54 @@ function showEvents(day) {
   }
 }
 
+function getAllMedicine() {
+  let medicine = [];
+
+  // วนลูปทุกวันใน events
+  Object.keys(events).forEach((date) => {
+    events[date].forEach((event) => {
+      if (Array.isArray(event.description)) {
+        event.description.forEach((desc) => {
+          if (desc.toLowerCase().includes("medicine")) {
+            medicine.push({ date, time: event.time, description: desc });
+          }
+        });
+      } else {
+        if (event.description.toLowerCase().includes("medicine")) {
+          medicine.push({ date, time: event.time, description: event.description });
+        }
+      }
+    });
+  });
+
+  return medicine;
+}
+
+function displayMedicine() {
+  const medicine = getAllMedicine();
+  $("#medicine-list").empty(); // เคลียร์ข้อมูลเก่า
+
+  if (medicine.length > 0) {
+    medicine.forEach((med) => {
+      $("#medicine-list").append(
+        `<div class="medicine-item">
+          <strong>${med.date} ${med.time}</strong>: ${med.description}
+        </div>`
+      );
+    });
+  } else {
+    $("#medicine-list").append(`<div>No medicine found.</div>`);
+  }
+}
+
+// เรียกใช้เมื่อโหลดหน้าเว็บ
+$(document).ready(function () {
+  displayMedicine();
+});
+
+// เรียกใช้ฟังก์ชัน
+console.log(getAllMedicine());
+
 onload = function () {
   initCalendar();
 };

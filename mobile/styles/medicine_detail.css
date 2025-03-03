@@ -17,8 +17,6 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* justify-content: center;
-    align-items: center; */
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -93,10 +91,18 @@
     font-size: 14px;
 }
 
+#medicine-detail > .medicine-detail > .info-block > .info > .row > .column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 5px;
+}
+
 #medicine-detail > .medicine-detail > .info-block > .info > .row > .title-label {
     color: var(--color-main);
     font-size: 12px;
     font-weight: 600;
+
 }
 
 #medicine-detail > .medicine-detail > .info-block > .info > .row > .normal-text {
@@ -104,33 +110,38 @@
     font-weight: 500;
 }
 
-#medicine-detail > .medicine-detail > .info-block > .info > .row > .block-text {
-    width: auto;
+#medicine-detail > .medicine-detail > .info-block > .info > .row > .column > .block-text {
+    width: fit-content;
     height: 21px;
-    margin: 0 2px;
-    padding: 2px 5px;
+    padding: 0 4px;
     border-radius: 5px;
     background-color: var(--color-main);
     color: var(--color-white);
     font-weight: 600;
 }
-/* 
-#medicine-detail > .medicine-detail > .select-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
-#medicine-detail > .medicine-detail > .select-button > .arrow-btn {
-    background-color: var(--color-white);
+#medicine-detail > .medicine-detail > #action-field > .select-button {
+    height: 30px;
+    width: 100%;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    opacity: 0.6;
 }
 
-#medicine-detail > .medicine-detail > .select-button > .arrow-btn > .icon {
-    width: 30px;
+#medicine-detail > .medicine-detail > #action-field > .select-button:hover {
+    background-color: var(--color-grey);
+    color: var(--color-white);
+    opacity: 1;
+}
+
+#medicine-detail > .medicine-detail > #action-field > .text-field {
     height: 30px;
-} */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-main)
+}

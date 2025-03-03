@@ -1,6 +1,6 @@
-/* body {
-    padding-bottom: 80px;
-} */
+body {
+    padding-bottom: 18vh;
+}
 
 #nav-bar {
     width: 100%;
@@ -19,7 +19,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 0 24px;
 }
 
 #nav-bar > .inner > .button{

@@ -226,7 +226,6 @@ function JSONsaveMedicineList(data) {
         data_medicine_list = `{"Medicine":[${dataList},${data}]}`;
     }
     localStorage.setItem("Medicine", data_medicine_list);
-    // localStorage.setItem("Medicine", JSON.stringify(data));
 }
 
 // {{date : [{time: [name, dose, note]}, {time: [name, dose, note]}]}}
@@ -291,9 +290,9 @@ function saveData() {
       "duration": "${duration}",
       "note": "${note}",
       "image": "${document.getElementById("medImage").src}",
-      "Start_date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+      "Start_date": "${today.getDate()} ${today.getMonth() + 1} ${today.getFullYear()}"
     }`;
-
+    localStorage.setItem(medName, "false");
     JSONsaveMedicineList(data);
     // localStorage.setItem("Medicine", data);
     alert("Data saved successfully!");
