@@ -16,31 +16,17 @@
     <!-- styles -->
     <link rel="stylesheet" href="./styles/all_style.css">
     <link rel="stylesheet" href="./styles/variables.css">
-
-    <link rel="stylesheet" href="./styles/content_section.css">
-
-    <!-- notification-card -->
-    <link rel="stylesheet" href="./styles/notification_card.css">
-    <!-- /notification-card -->
-
     <!-- /styles -->
 
     <title>Noticine Template</title>
   </head>
   <body>
-    <!-- content -->
-    <section id="content">
-      <!-- notification-card -->
-      <div class="notification-card">
-        <span class="template-name">Template Name</span>
-        <div class="row"><span class="description-label">Description: </span><span class="description">Take after meal</span></div>
-      </div>
-      <!-- /notification-card -->
-    </section>
-    <!-- /content -->
-
-    <!-- script -->
-    <script src="./scripts/notification_card.js"></script>
-    <!-- /script -->
+    <input type="text" name="id" id="medicine-id">
+    <button onclick="getTemplate()">get template</button>
+    <button onclick="getAllTemplate()">get all template</button>
+    <button onclick="createTemplate()">create template</button>
+    <button onclick="editTemplate()">edit template</button>
+    
+    <script src="./scripts/template_functions.js"></script>
   </body>
 </html>

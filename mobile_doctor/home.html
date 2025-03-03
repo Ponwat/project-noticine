@@ -66,6 +66,18 @@
 
     <!-- scripts -->
     <script src="./scripts/add_menu.js"></script>
+    <script src="./scripts/template_functions.js"></script>
+    <script src="./scripts/notification_card.js"></script>
+    <script type="module">
+      const allTemplates = await getAllTemplate();
+      const content = document.getElementById("content");
+      content.innerHTML = "";
+      allTemplates.forEach(element => {
+        const notificationCard = createNotificationCard({name:element.Name, description:element.Description});
+        document.getElementById("content").appendChild(notificationCard);
+      });
+      console.log(allTemplates);
+    </script>
     <!-- scripts -->
   </body>
 </html>
