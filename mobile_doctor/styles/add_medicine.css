@@ -1,0 +1,347 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: var(--color-secondary);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+    width: 100vw;
+    max-width: 500px;
+    height: auto;
+    /* min-height: 500px;
+    max-height: auto; */
+    /* overflow: auto; */
+}
+.image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    /* margin-bottom: 10px; */
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.image-container #imageInput {
+    position: absolute;
+
+    width: 142px;
+    height: 142px;
+    border-radius: 10px;
+    right: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 5px;
+    color: var(--color-light);
+}
+
+/* กล่องใส่ data ทั้งหมด */
+select, input {
+    width: auto;
+    padding: 8px;
+    border-radius: 24px;
+    border: 4px solid var(--color-main);
+}
+/* กล่องใส่ data ทั้งหมด */
+/* 
+.time-list {
+    margin-top: 10px;
+} */
+.time-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-secondary);
+    padding: 2px;
+    margin: 5px 0;
+    border-radius: 24px;
+    width: auto;
+}
+
+.time-dose-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* gap: 10px; */
+    width: 100%;
+}
+
+.time-dose-container label{
+    font-weight: bold;
+    display: inline-block;
+}
+
+.label-time {
+    flex: 1;
+}
+
+.label-dose{
+    flex: 1;
+}
+
+.label-none{
+    width: 48px;
+}
+
+
+/* Time */
+.time-dose-container .time {
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-white);
+    padding: 8px;
+    border: 4px solid var(--color-main);
+    border-radius: 24px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+/* Dose */
+.time-dose-container .dose {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+    background-color: var(--color-white);
+    border: 4px solid var(--color-main);
+    border-radius: 24px;
+    width: 80px;
+    margin: 0 10px;
+}
+
+
+.time-dose-container .delete {
+    background-color: var(--color-red);
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.time-dose-container .delete:hover {
+    background-color: darkred; 
+}
+
+#timeInput, 
+#doseInput {
+    width: 100%; /* กำหนดความกว้างให้เต็มกรอบ modal */
+    max-width: 100%; /* ไม่ให้กว้างเกินไป */
+    height: 40px; /* ความสูง */
+    padding: 8px;
+    font-size: 16px;
+    border: 4px solid var(--color-main);
+    border-radius: 24px;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* คำนวณ padding และ border */
+}
+
+.add-time-button {
+    background-color: #7a89fa;
+    padding: 8px;
+    color: var(--color-white);
+    font-weight: 600px;
+    font-size: 20px;
+    border: 4px solid var(--color-main);
+    border-radius: 24px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.delete {
+    background: none;
+    color: var(--color-white);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 20px;
+}
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save, .cancel, .reset{
+    padding: 5px 2px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    color: var(--color-black);
+}
+
+.save {
+    background: var(--color-green);
+}
+
+.cancel {
+    background: var(--color-red);
+}
+
+.reset {
+    background: var(--color-grey);
+}
+
+.modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.modal label{
+    color: var(--color-black);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal button {
+    margin-top: 10px;
+    width: 100%; 
+}
+
+#xDayInput {
+    display: none;
+    margin-top: 10px;
+}
+
+.duration-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.duration-modal button {
+    margin-top: 10px;
+    width: 50%;
+    border-radius: 24px;
+}
+
+.duration-modal .ok-btn{
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 4px solid var(--color-grey);
+}
+
+.duration-modal .cancel-btn{
+    color: var(--color-black);
+    background-color: var(--color-white);
+    border: 4px solid var(--color-grey);
+}
+
+#durationIntervalContainer label {
+    color: var(--color-black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+    display: block; /* จัดการให้ label อยู่บรรทัดใหม่ */
+    margin-bottom: 5px; /* เพิ่มระยะห่างระหว่าง label และ select */
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.frequency-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+.frequency-modal button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#intervalContainer label {
+    color: var(--color-black); /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+    display: block; /* จัดการให้ label อยู่บรรทัดใหม่ */
+    margin-bottom: 5px; /* เพิ่มระยะห่างระหว่าง label และ select */
+}
+
+
+.unit-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.unit-modal button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.hidden label{
+    color: var(--color-black);
+}

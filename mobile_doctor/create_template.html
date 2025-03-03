@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- /import -->
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    <link rel="stylesheet" href="./styles/content_section.css">
+
+    <link rel="stylesheet" href="./styles/add_medicine.css">
+    <link rel="stylesheet" href="./styles/create_template.css">
+    <!-- /styles -->
+
+    <title>Noticine Template</title>
+  </head>
+  <body>
+    <section id="content">
+        <div class="main-content">
+            <label for="template-name">Tempalte Name</label>
+            <input type="text" name="template-name" id="template-name">
+            <label for="template-description">Tempalte Description</label>
+            <input type="text" name="template-description" id="template-description">
+            <div class="button-group">
+                <button class="cancel" onclick="cancelForm()">Cancel</button>
+                <button class="save" onclick="saveData()">Save</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function cancelForm() {
+            window.location.href = "./get_medicine_id.html";
+        }
+
+        function saveData() {
+            let templateName = document.getElementById("template-name").value;
+            let templateDescription = document.getElementById("template-description").value;
+
+            if (templateName == "" || templateDescription == "") {
+                alert("Please fill all the fields");
+                return;
+            }
+
+            let data = {
+                "template_name": templateName,
+                "template_description": templateDescription
+            }
+
+            
+        }   
+    </script>
+  </body>
+</html>
