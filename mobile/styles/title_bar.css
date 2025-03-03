@@ -19,7 +19,6 @@ body {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 0 24px;
     align-items: center;
     justify-content: center;
 }

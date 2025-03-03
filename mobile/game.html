@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <!-- import -->
-    <!-- font Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- /import -->
 
-    <!-- styles -->
-    <link rel="stylesheet" href="./styles/all_style.css">
-    <link rel="stylesheet" href="./styles/variables.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <!-- import -->
+  <!-- font Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <!-- /import -->
 
-    <!-- nav-bar -->
-    <link rel="stylesheet" href="./styles/nav_bar.css">
-    <!-- /nav-bar -->
+  <!-- styles -->
+  <link rel="stylesheet" href="./styles/all_style.css">
+  <link rel="stylesheet" href="./styles/variables.css">
 
-    <!-- title bar -->
-    <link rel="stylesheet" href="./styles/title_bar.css">
-    <!-- /title bar -->
+  <!-- nav-bar -->
+  <link rel="stylesheet" href="./styles/nav_bar.css">
+  <!-- /nav-bar -->
 
-    <!-- -- game styles -- -->
-    <link rel="stylesheet" href="./styles/game.css">
+  <!-- title bar -->
+  <link rel="stylesheet" href="./styles/title_bar.css">
+  <!-- /title bar -->
 
-    <!-- /styles -->
+  <!-- -- game styles -- -->
+  <link rel="stylesheet" href="./styles/game.css">
 
-    <title>Medication Checker</title>
-  </head>
-  <body>
-      <!-- nav-bar-->
-      <div id="nav-bar">
-        <div class="inner">
-            <div class="button" id="home">
-                <img src="/icons/home.svg" alt="" class="icon">
-                <div class="label">Home</div>
-            </div>
-            <div class="button" id="calendar">
-                <img src="/icons/calendar.svg" alt="" class="icon">
-                <div class="label">Calendar</div>
-            </div>
-            <div class="button" id="game">
-                <img src="/icons/gamepad.svg" alt="" class="icon">
-                <div class="label">Game</div>
-            </div>
-        </div>
+  <!-- /styles -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <title>Medication Checker</title>
+</head>
+
+<body>
+  <!-- nav-bar-->
+  <div id="nav-bar">
+    <div class="inner">
+      <div class="button" id="home">
+        <img src="/icons/home.svg" alt="" class="icon">
+        <div class="label">Home</div>
+      </div>
+      <div class="button" id="calendar">
+        <img src="/icons/calendar.svg" alt="" class="icon">
+        <div class="label">Calendar</div>
+      </div>
+      <div class="button" id="game">
+        <img src="/icons/gamepad.svg" alt="" class="icon">
+        <div class="label">Game</div>
+      </div>
     </div>
-      <!-- /nav-bar-->
+  </div>
+  <!-- /nav-bar-->
 
-      <!-- title-bar -->
-      <div id="title-bar">
-          <div class="inner">
-            <!-- <img src="/icons/setting.svg" alt="setting-icon" class="icon"> -->
-            <div class="title">Medication Checker</div>
-            <!-- <img src="/icons/profile.svg" alt="profile-icon" class="icon"> -->
-          </div>
-      </div>
-      <!-- /title-bar -->
+  <!-- title-bar -->
+  <div id="title-bar">
+    <div class="inner">
+      <!-- <img src="/icons/setting.svg" alt="setting-icon" class="icon"> -->
+      <div class="title">Medication Checker</div>
+      <!-- <img src="/icons/profile.svg" alt="profile-icon" class="icon"> -->
+    </div>
+  </div>
+  <!-- /title-bar -->
 
-      <div class="app">
-        <h1>Medication Quiz</h1>
-        <div class="quiz">
-          <h2 id="question">Question goes here</h2>
-          <div id="answer-buttons">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>                       
-          </div>
-          <button id="next-btn">Next</button>
-        </div>
+  <div class="app">
+    <h1>Medication Quiz</h1>
+    <div class="quiz">
+      <h2 id="question">Question goes here</h2>
+      <div id="answer-buttons">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
       </div>
-      <script src="./scripts/game.js"></script>
-  </body>
+      <button id="next-btn">Next</button>
+    </div>
+  </div>
+  <script src="./scripts/navigation.js"></script>
+  <script src="./scripts/game.js"></script>
+</body>
+
 </html>
-
