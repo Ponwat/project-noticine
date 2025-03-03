@@ -18,6 +18,10 @@ $(document).ready(function () {
   })
 });
 
+function scanResult(value) {
+    alert(value);
+}
+
 function AddMedicine() {
   const medicine_img = $("#medicine-img").val();
   const medicine_title = $("#medicine-title").val();
