@@ -11,7 +11,6 @@ $(document).ready(function () {
   });
 
   $("#scan-template").click(function () { 
-    alert("scan");
     if (AppInventor) {
       AppInventor.setWebViewString("scan");
     }
@@ -19,7 +18,7 @@ $(document).ready(function () {
 });
 
 function scanResult(value) {
-    alert(value);
+    alert(`this is the scan result [${value}]`);
 }
 
 function AddMedicine() {
