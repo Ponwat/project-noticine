@@ -77,7 +77,9 @@ async function editTemplate() {
 async function editTemplateId(id, template) {
   url = `${serverURL}/editTemplate/${id}`;
 
-  // const template = {
+  console.log(template)
+
+  // template = {
   //   Name: "Paracetamol3",
   //   Description: "Paracetamol template",
   //   medications: [
@@ -105,5 +107,6 @@ async function editTemplateId(id, template) {
     },
     body: JSON.stringify(template),
   }).then((response) => response.json());
+  console.log(data)
   return data;
 }

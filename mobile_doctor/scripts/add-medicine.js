@@ -284,13 +284,21 @@ localStorage.getItem("Medicine");
 onload = function () {
     if (localStorage.getItem("Medicine") != null) {
         datafromLS = JSON.parse(localStorage.getItem("Medicine"));
-        alert(datafromLS);
+        // alert(datafromLS);
     }
 }
 
+const param = new URLSearchParams(window.location.search);
+const id = param.get("id");
+console.log(id);
+
 //-------------------------------------- SAVE CANCEL RESET SECTION --------------------------------
-function cancelForm() {
-    window.location.href = "home.html";
+function cancelForm() { 
+    if (id) {
+        window.location.href = "./template.html?id=" + id;
+        return;
+    }
+    window.location.href = "./home.html";
 }
 
 function resetForm() {
@@ -338,13 +346,18 @@ function saveData() {
       "duration": "${duration}",
       "note": "${note}",
       "image": "${document.getElementById("medImage").src}",
-      "Start-date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}"
+      "Start-date": "${today.getDate()} ${today.getMonth()} ${today.getFullYear()}",
+      "unit": "${unit}"
     }`;
 
     JSONsaveMedicineList(data);
     // localStorage.setItem("Medicine", data);
     alert("Data saved successfully!");
 
-    window.location.href = "home.html";
+    if (id) {
+        window.location.href = "./template.html?id=" + id;
+        return;
+    }
+    window.location.href = "./home.html";
 }
 

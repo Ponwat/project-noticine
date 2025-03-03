@@ -70,11 +70,57 @@
         document.querySelector(".title").textContent = template.Name;
         document.querySelector(".description").textContent = template.Description;
 
+        const medicine = JSON.parse(JSON.parse(localStorage.getItem("Medicine")));
+        if (medicine["medicine-name"] != null) {
+            // const frequencyMap = (input) => {
+            //     if (input === "Everyday") return 1;
+            //     if (input === "Only as needed") return 0;
+            //     input = input.split(" ");
+            //     if (input[2] === "Day") return parseInt(input[1]);
+            //     if (input[2] === "Week") return parseInt(input[1]) * 7;
+            //     if (input[2] === "Month") return parseInt(input[1]) * 30;
+            // };
+            // const durationMap = (input) => {
+            //     if (input === "For a full course") return 14;
+            //     if (input === "Until symptoms resolve") return 0;
+            //     if (input === "Until next follow-up") return 30;
+            //     if (input === "Long-term") return 365;
+            //     input = input.split(" ");
+            //     if (input[1] === "Days") return parseInt(input[0]);
+            //     if (input[1] === "Weeks") return parseInt(input[0]) * 7;
+            //     if (input[1] === "Months") return parseInt(input[0]) * 30;
+            // };
+
+            // console.log(frequencyMap(medicine.frequency));
+
+            template.medications.push({
+                Name: medicine["medicine-name"],
+                times: medicine["time-dose"].map(({time, dose}) => {
+                    return { time, dose: dose.split(" ")[0] };
+                }),
+                note: medicine.note,
+                Unit: medicine.unit,
+                frequency: medicine.frequency,
+                duration: medicine.duration,
+                // frequency: String(frequencyMap(medicine.frequency)),
+                // duration: String(durationMap(medicine.duration)),
+            });
+        }
+
+        console.log(template);
+
+
+        const addMedicineButton = document.getElementById("add-medicine");
+        addMedicineButton.addEventListener("click", () => {
+            window.location.href = `./add-medicine.html?id=${template.id}`;
+        });
+
         const notificationCards = document.querySelector(".notification-cards");
         notificationCards.innerHTML = "";
         template.medications.forEach((medication) => {
             const notificationCard = document.createElement("div");
             notificationCard.classList.add("notification-card");
+            try {
             notificationCard.innerHTML = `
                 <div class="data" id="medication-${medication.id}">
                     <img src="/images/add_image.png" class="medicine-image" alt="medicine-image">
@@ -97,7 +143,12 @@
                 console.log(template);
             });
             notificationCards.appendChild(notificationCard);
+            } catch (error) {
+                console.log(error);
+            }
         });
+        
+        localStorage.setItem("Medicine", JSON.stringify(JSON.stringify({})));
 
         const homeIcon = document.getElementById("home-icon");
         homeIcon.addEventListener("click", () => {
@@ -108,8 +159,8 @@
         saveIcon.addEventListener("click", async () => {
             const result = await editTemplateId(template.id, template);
             console.log(result)
-            if (result.message) {
-                alert(result.message);
+            if (result.error) {
+                alert(result.error);
                 return;
             }   
             alert("Template saved successfully");
