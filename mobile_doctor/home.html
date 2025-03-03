@@ -68,7 +68,7 @@
      <!-- medicine-detail -->
     <div class="medicine-detail">
         <img src="/icons/bold_plus.svg" class="close-button">
-        <div class="title">Template</div>
+        <div class="title"><span id="template-title">Template</span> <img src="/icons/pencil_black.svg" alt="" srcset=""></div>
         <div class="description"><span class="label">Description: </span><span class="value">Take after meals</span></div>
         <img src="/images/test_qr_code.png" class="qr-code">
         <div class="medicine-label">Medicine:</div>
@@ -101,10 +101,11 @@
         medicine_detail.style.display = "none";
       });
 
-      const medicine_detail_title = medicine_detail.getElementsByClassName("title")[0];
+      const medicine_detail_title = medicine_detail.getElementsByClassName("title")[0].firstChild;
       const medicine_detail_description = medicine_detail.getElementsByClassName("description")[0];
       const medicine_detail_qr_code = medicine_detail.getElementsByClassName("qr-code")[0];
       const medicine_detail_medicine_list = medicine_detail.getElementsByClassName("medicine-list")[0];
+      const medicine_detail_pencil = medicine_detail.getElementsByClassName("title")[0].lastChild;
       medicine_detail_medicine_list.innerHTML = "";
 
       // const medicine_detail_
@@ -117,6 +118,9 @@
           const medicine_name = document.createElement("li");
           medicine_name.innerHTML = element.Name;
           medicine_detail_medicine_list.appendChild(medicine_name);
+        });
+        medicine_detail_pencil.addEventListener("click", () => {
+          window.location.href = `./template.html?id=${template.id}`;
         });
         medicine_detail.style.display = "flex";
       }
