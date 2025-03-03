@@ -88,7 +88,6 @@ function notificationSortTimeDate(day, month, year) {
     return;
   }
   let dayselect = new Date(year, month, day);
-  let daystart;
   let timeSets = new Set();
   let timeArray = [];
   //get time
@@ -143,9 +142,9 @@ function notificationSortTimeDate(day, month, year) {
         frequencyMed[1] = parseInt(frequencyMed[1], 10);
         if (frequencyMed[2] == "Day") {
           frequencyCheck = countDay % frequencyMed[1];
-        } else if (frequencyMed[2] == "Weeks") {
+        } else if (frequencyMed[2] == "Week") {
           frequencyCheck = countDay % (frequencyMed[1] * 7);
-        } else if (frequencyMed[2] == "Months") {
+        } else if (frequencyMed[2] == "Month") {
           frequencyCheck = countDay % (frequencyMed[1] * 30);
         }
       }
@@ -163,7 +162,6 @@ function notificationSortTimeDate(day, month, year) {
   }
   // console.log(notificationSortTimeDate);
   // console.log(timeArray);
-  // console.log(datafromLS);
   if (timeArray == 0) {
     $("#content").empty();
     $("#content").append(
@@ -249,7 +247,7 @@ function checkboxTrue(targetmedicine) {
     if(datacheck[formattedDate]){
       if (!(datacheck[formattedDate].find(t => t == v.value2))){
         datacheck[formattedDate].push(v.value2);
-        console.log(datacheck[formattedDate]);
+        // console.log(datacheck[formattedDate]);
         localStorage.setItem(v.value1 + "check", JSON.stringify(datacheck));
       }else if (datacheck[formattedDate].find(t => t == v.value2)) {
         datacheck[formattedDate].splice(datacheck[formattedDate].indexOf(v.value2), 1)
@@ -257,7 +255,7 @@ function checkboxTrue(targetmedicine) {
       }
     }else if (!datacheck[formattedDate]){
       datacheck[formattedDate] = [v.value2];
-      console.log(datacheck)
+      // console.log(datacheck)
       localStorage.setItem(v.value1 + "check", JSON.stringify(datacheck));
     }
   }

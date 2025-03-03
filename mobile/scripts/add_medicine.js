@@ -320,6 +320,7 @@ function saveData() {
         return; 
     }
 
+
     let timeDoseList = [];
     for (let item of timeList) {
         let time = item.querySelector(".time").textContent;
@@ -337,6 +338,7 @@ function saveData() {
       "image": "${document.getElementById("medImage").src}",
       "Start_date": "${today.getDate()} ${today.getMonth() + 1} ${today.getFullYear()}"
     }`;
+
     localStorage.setItem(medName, "false");
     JSONsaveMedicineList(data);
     // localStorage.setItem("Medicine", data);
@@ -363,3 +365,4 @@ function buttonClick() {
         AppInventor.setWebViewString("buttonClick");
     }
 }
+

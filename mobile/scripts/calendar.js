@@ -20,30 +20,166 @@ const months = [
 ];
 
 // ตัวอย่างข้อมูลเหตุการณ์ (สามารถปรับเปลี่ยนได้ตามต้องการ)
-const events = {
-  "2025-01-01": [
-    {
-      time: "08:00",
-      description: [
-        "Medicine name 1, 1 pill, Take after m...",
-        "Medicine name 1, 1 pill, Take after m...",
-        "Medicine name 1, 1 pill, Take after m...",
-      ],
-    },
-    {
-      time: "12:00",
-      description: "Medicine name 1, 1 pill, Take after m...",
-    },
-    {
-      time: "16:00",
-      description: "Medicine name 1, 1 pill, Take after m...",
-    },
-  ],
-  "2025-01-05": [
-    { time: "10:00", description: "Meeting with team" },
-    { time: "14:00", description: "Project presentation" },
-  ],
-};
+// const events = {
+//   "2025-01-01": [
+//     {
+//       time: "08:00",
+//       description: [
+//         "Medicine name 1, 1 pill, Take after m...",
+//         "Medicine name 1, 1 pill, Take after m...",
+//         "Medicine name 1, 1 pill, Take after m...",
+//       ],
+//     },
+//     {
+//       time: "12:00",
+//       description: "Medicine name 1, 1 pill, Take after m...",
+//     },
+//     {
+//       time: "16:00",
+//       description: "Medicine name 1, 1 pill, Take after m...",
+//     },
+//   ],
+//   "2025-01-05": [
+//     { time: "10:00", description: "Meeting with team" },
+//     { time: "14:00", description: "Project presentation" },
+//   ],
+// };
+
+let events = {};
+
+function getMedicineEvent(n) {
+  events = {};
+  if (localStorage.getItem("Medicine") != null) {
+    let datafromLS = JSON.parse(localStorage.getItem("Medicine"));
+    for (let x = 1; x <= n; x++) {
+      let formattedDate = `${x}-${month + 1}-${year}`;
+      let dayselect = new Date(year, month, x);
+      let timeSets = new Set();
+      let timeArray = [];
+      //get time
+      for (let i = 0; i < datafromLS.Medicine.length; i++) {
+        let dateArray = datafromLS.Medicine[i].Start_date.split(" ");
+        let startdate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+        let durationMed = datafromLS.Medicine[i].duration;
+        let frequencyMed = datafromLS.Medicine[i].frequency;
+        let durationCheck = 0;
+        let frequencyCheck = 0;
+        let countDay = (dayselect - startdate) / (24 * 60 * 60 * 1000) + 1;
+        if (countDay >= 0) {
+          if (
+            durationMed == "For a full course" ||
+            durationMed == "Until symptoms resolve" ||
+            durationMed == "Until next follow-up" ||
+            durationMed == "Long-term"
+          ) {
+            durationCheck = 1;
+          } else {
+            durationMed = durationMed.split(" ");
+            durationMed[0] = parseInt(durationMed[0], 10);
+            if (durationMed[1] == "Days") {
+              durationCheck = durationMed[0] - countDay;
+            } else if (durationMed[1] == "Weeks") {
+              durationCheck = durationMed[0] * 7 - countDay;
+            } else if (durationMed[1] == "Months") {
+              durationCheck = durationMed[0] * 30 - countDay;
+            }
+          }
+
+          if (frequencyMed == "Everyday" || frequencyMed == "Only as needed") {
+            frequencyCheck = 1;
+          } else {
+            frequencyMed = frequencyMed.split(" ");
+            frequencyMed[1] = parseInt(frequencyMed[1], 10);
+            if (frequencyMed[2] == "Day") {
+              frequencyCheck = countDay % frequencyMed[1];
+            } else if (frequencyMed[2] == "Week") {
+              frequencyCheck = countDay % (frequencyMed[1] * 7);
+            } else if (frequencyMed[2] == "Month") {
+              frequencyCheck = countDay % (frequencyMed[1] * 30);
+            }
+          }
+          if (durationCheck > 0 && frequencyCheck == 1) {
+            if (dayselect >= startdate) {
+              for (
+                let j = 0;
+                j < datafromLS.Medicine[i].time_dose.length;
+                j++
+              ) {
+                timeSets.add(datafromLS.Medicine[i].time_dose[j].time);
+              }
+            }
+          }
+        }
+      }
+      //sort time
+      timeSets.forEach((i) => timeArray.push(i));
+      timeArray = timeArray.sort();
+      let notificationSortTimeDate = [];
+      timeArray.forEach((i) =>
+        notificationSortTimeDate.push(JSON.parse(`{"${i}":[]}`))
+      );
+      //sort med
+      for (let i = 0; i < datafromLS.Medicine.length; i++) {
+        let dateArray = datafromLS.Medicine[i].Start_date.split(" ");
+        let startdate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+        let durationMed = datafromLS.Medicine[i].duration;
+        let frequencyMed = datafromLS.Medicine[i].frequency;
+        let durationCheck = 0;
+        let frequencyCheck = 0;
+        let countDay = (dayselect - startdate) / (24 * 60 * 60 * 1000) + 1;
+        if (countDay >= 0) {
+          if (
+            durationMed == "For a full course" ||
+            durationMed == "Until symptoms resolve" ||
+            durationMed == "Until next follow-up" ||
+            durationMed == "Long-term"
+          ) {
+            durationCheck = 1;
+          } else {
+            durationMed = durationMed.split(" ");
+            durationMed[0] = parseInt(durationMed[0], 10);
+            if (durationMed[1] == "Days") {
+              durationCheck = durationMed[0] - countDay;
+            } else if (durationMed[1] == "Weeks") {
+              durationCheck = durationMed[0] * 7 - countDay;
+            } else if (durationMed[1] == "Months") {
+              durationCheck = durationMed[0] * 30 - countDay;
+            }
+          }
+
+          if (frequencyMed == "Everyday" || frequencyMed == "Only as needed") {
+            frequencyCheck = 1;
+          } else {
+            frequencyMed = frequencyMed.split(" ");
+            frequencyMed[1] = parseInt(frequencyMed[1], 10);
+            if (frequencyMed[2] == "Day") {
+              frequencyCheck = countDay % frequencyMed[1];
+            } else if (frequencyMed[2] == "Week") {
+              frequencyCheck = countDay % (frequencyMed[1] * 7);
+            } else if (frequencyMed[2] == "Month") {
+              frequencyCheck = countDay % (frequencyMed[1] * 30);
+            }
+          }
+          if (durationCheck > 0 && frequencyCheck == 1) {
+            if (dayselect >= startdate) {
+              for (
+                let j = 0;
+                j < datafromLS.Medicine[i].time_dose.length;
+                j++
+              ) {
+                let time = datafromLS.Medicine[i].time_dose[j].time;
+                notificationSortTimeDate[timeArray.findIndex((i) => i == time)][
+                  time
+                ].push(datafromLS.Medicine[i].medicine_name);
+              }
+            }
+          }
+        }
+      }
+      events[formattedDate] = notificationSortTimeDate;
+    }
+  }
+}
 
 function initCalendar() {
   const firstDay = new Date(year, month, 1);
@@ -55,6 +191,8 @@ function initCalendar() {
   const nextDays = 7 - lastDay.getDay() - 1;
 
   const selectedDate = new Date(year, month, day);
+  getMedicineEvent(lastDate);
+  // console.log(events);
 
   $("#date").text(`${months[month]} ${year}`);
   $(".days").empty();
@@ -64,19 +202,8 @@ function initCalendar() {
   }
 
   for (let i = 1; i <= lastDate; i++) {
-    const formattedDate = `${selectedDate.getFullYear()}-${(
-      selectedDate.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}-${i.toFixed(0).padStart(2, "0")}`;
-    if (events[formattedDate]) {
-      //   if (events[formattedDate].check == true) {
-      //     $(".days").append(`<div class="day true">${i}</div>`);
-      //   } else if (events[formattedDate].check == false) {
-      //     $(".days").append(`<div class="day false">${i}</div>`);
-      //   } else {
-      //     $(".days").append(`<div class="day event">${i}</div>`);
-      // }
+    let formattedDate = `${i}-${month + 1}-${year}`;
+    if (events[formattedDate].length != 0) {
       $(".days").append(`<div class="day event">${i}</div>`);
     } else {
       $(".days").append(`<div class="day">${i}</div>`);
@@ -92,6 +219,9 @@ function initCalendar() {
     $(e.target).addClass("active");
     showEvents(e.target.textContent);
   });
+
+  $(".prev-date").click(prevMonth);
+  $(".next-date").click(nextMonth);
 }
 
 function prevMonth() {
@@ -114,80 +244,30 @@ function nextMonth() {
 
 function showEvents(day) {
   const selectedDate = new Date(year, month, day);
-  const formattedDate = `${selectedDate.getFullYear()}-${(
+  let formattedDate = `${day}-${
     selectedDate.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
-
+  }-${selectedDate.getFullYear()}`;
   $("#event-date").text(`${months[month]} ${day} ${year}`);
   $("#event-list").empty();
   if (events[formattedDate]) {
     events[formattedDate].forEach((event) => {
+      // console.log(event);
+      let time = Object.keys(event)[0];
+      // console.log(time, event[time][0]);
       let description = "";
-      if (Array.isArray(event.description)) {
-        event.description.forEach((desc) => {
-          description += `<div>${desc}</div>`;
-        });
-      } else {
-        description += `<div>${event.description}</div>`;
+      event[time].forEach((desc) => {
+        description += `<div>${desc}</div>`;
+      });
+      if (event[time].length != 0) {
+        $("#event-list").append(
+          `<div class="event">${time}<hr><span id="list">${description}</span></div>`
+        );
       }
-      $("#event-list").append(
-        `<div class="event">${event.time}<hr><span id="list">${description}</span></div>`
-      );
     });
   } else {
     $("#event-list").append(`<hr><div>No events for this day.</div>`);
   }
 }
-
-function getAllMedicine() {
-  let medicine = [];
-
-  // วนลูปทุกวันใน events
-  Object.keys(events).forEach((date) => {
-    events[date].forEach((event) => {
-      if (Array.isArray(event.description)) {
-        event.description.forEach((desc) => {
-          if (desc.toLowerCase().includes("medicine")) {
-            medicine.push({ date, time: event.time, description: desc });
-          }
-        });
-      } else {
-        if (event.description.toLowerCase().includes("medicine")) {
-          medicine.push({ date, time: event.time, description: event.description });
-        }
-      }
-    });
-  });
-
-  return medicine;
-}
-
-function displayMedicine() {
-  const medicine = getAllMedicine();
-  $("#medicine-list").empty(); // เคลียร์ข้อมูลเก่า
-
-  if (medicine.length > 0) {
-    medicine.forEach((med) => {
-      $("#medicine-list").append(
-        `<div class="medicine-item">
-          <strong>${med.date} ${med.time}</strong>: ${med.description}
-        </div>`
-      );
-    });
-  } else {
-    $("#medicine-list").append(`<div>No medicine found.</div>`);
-  }
-}
-
-// เรียกใช้เมื่อโหลดหน้าเว็บ
-$(document).ready(function () {
-  displayMedicine();
-});
-
-// เรียกใช้ฟังก์ชัน
-console.log(getAllMedicine());
 
 onload = function () {
   initCalendar();
