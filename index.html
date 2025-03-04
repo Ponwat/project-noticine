@@ -29,7 +29,15 @@ function JSONsaveMedicineList(data) {
     let data_medicine_list = "";
     // console.log(dataList["Medicine"]);
     if (dataList === "") {
-        data_medicine_list = `{"Medicine":[{}]}`;
+        let data_medicine_list = `{
+        "medicine_name": "${"Paracetamol"}",
+        "time_dose": [{"time": "08:00"", "dose": "1"}],
+        "frequency": "${"Everyday"}",
+        "duration": "${"1 week"}",
+        "note": "${""}",
+        }`;
+    } else {
+
     }
     localStorage.setItem("Medicine", data_medicine_list);
 }
