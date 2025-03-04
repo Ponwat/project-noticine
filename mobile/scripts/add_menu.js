@@ -30,6 +30,10 @@ function scanResult(value) {
     }
 
   })
+  .error(
+    alert("Scan failed");
+  );
+  
 // async function scanResult(value) {
 //   try {
 //     const template = await getId(value);
