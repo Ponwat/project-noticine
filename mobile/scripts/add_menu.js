@@ -17,8 +17,10 @@ $(document).ready(function () {
   })
 });
 
-function scanResult(value) {
-    alert(`this is the scan result [${value}]`);
+async function scanResult(value) {
+  const template = await getId(value);
+  alert(template.Name);
+  // alert(`this is the scan result [${value}]`);
 }
 
 function AddMedicine() {
