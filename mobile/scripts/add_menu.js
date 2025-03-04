@@ -10,15 +10,15 @@ $(document).ready(function () {
     $("#add-button").toggleClass("open");
   });
 
-  $("#scan-template").click(function () {
+  $("#scan-template").click(async function () {
     // if (AppInventor) {
     //   AppInventor.setWebViewString("scan");
     // }
-    scanResult("1000");
+    await scanResult("1000");
   });
 });
 
-function scanResult(value) {
+async function scanResult(value) {
   // getTemplate(value);
   alert(`this is the scan result [${value}]`);
   if(confirm(getTemplate(value))){
