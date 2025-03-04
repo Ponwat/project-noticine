@@ -31,7 +31,7 @@ function JSONsaveMedicineList(data) {
     if (dataList === "") {
         data_medicine_list = `{"Medicine":[${data}]}`;
     }
-    localStorage.setItem("Medicine", data_medicine_list);
+    localStorage.setItem("Medicine", null);
 }
 onload = function () {
     if (localStorage.getItem("Medicine") != null) {
@@ -44,7 +44,7 @@ onload = function () {
         }
     }
 }
-JSONsaveMedicineList(dataList);
+JSONsaveMedicineList(null);
     </script>
     
     </div>
