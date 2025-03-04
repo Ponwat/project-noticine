@@ -19,10 +19,11 @@ $(document).ready(function () {
 });
 
 function scanResult(value) {
+  // alert(value)
   // await getTemplate(value);
   getId(value)
   .then((template) => {
-    alert(`this is the scan result [${value}]`);
+    // alert(`this is the scan result [${value}]`);
     if (template.message) {
       alert(template.message);
       throw new Error(template.message);
