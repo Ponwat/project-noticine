@@ -29,9 +29,9 @@ function JSONsaveMedicineList(data) {
     let data_medicine_list = "";
     // console.log(dataList["Medicine"]);
     if (dataList === "") {
-        data_medicine_list = `{"Medicine":[${data}]}`;
+        data_medicine_list = `{"Medicine":[{}]}`;
     }
-    localStorage.setItem("Medicine", null);
+    localStorage.setItem("Medicine", data_medicine_list);
 }
 onload = function () {
     if (localStorage.getItem("Medicine") != null) {
