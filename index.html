@@ -25,19 +25,12 @@ let today = new Date();
 let datafromLS = {};
 let dataList = "";
 function JSONsaveMedicineList(data) {
-    // let data_medicine_list = `{"medicine-list": [${data}]}`;
     let data_medicine_list = "";
     // console.log(dataList["Medicine"]);
     if (dataList === "") {
-        let data_medicine_list = `{
-        "medicine_name": "${"Paracetamol"}",
-        "time_dose": [{"time": "08:00"", "dose": "1"}],
-        "frequency": "${"Everyday"}",
-        "duration": "${"1 week"}",
-        "note": "${""}",
-        }`;
-    } else {
-
+        data_medicine_list = `{"Medicine":[${data}]}`;
+    }else {
+        data_medicine_list = `{"Medicine":[${dataList},${data}]}`;
     }
     localStorage.setItem("Medicine", data_medicine_list);
 }
@@ -52,7 +45,7 @@ onload = function () {
         }
     }
 }
-JSONsaveMedicineList(null);
+localStorage.setItem("Medicine", '{"Medicine":[{\n      "medicine_name": "123123",\n      "time_dose": [\n        {"time": "14:06", "dose": "1 pill"}\n      ],\n      "frequency": "Everyday",\n      "duration": "For a full course",\n      "note": "",\n      "image": "http://127.0.0.1:5501/images/add_image.png",\n      "Start_date": "4 3 2025"\n    }]}')
     </script>
     
     </div>
