@@ -21,7 +21,30 @@
     <script src="script.js"></script>
     <script>
         // alert(localStorage.getItem("Medicine") === null)
-      localStorage.setItem("Medicine", JSON.stringify({Medicine:[{image:""}]}));
+let today = new Date();
+let datafromLS = {};
+let dataList = "";
+function JSONsaveMedicineList(data) {
+    // let data_medicine_list = `{"medicine-list": [${data}]}`;
+    let data_medicine_list = "";
+    // console.log(dataList["Medicine"]);
+    if (dataList === "") {
+        data_medicine_list = `{"Medicine":[${data}]}`;
+    }
+    localStorage.setItem("Medicine", data_medicine_list);
+}
+onload = function () {
+    if (localStorage.getItem("Medicine") != null) {
+        datafromLS = JSON.parse(localStorage.getItem("Medicine"));
+        for (let i = 0; i < datafromLS.Medicine.length; i++) {
+            dataList += JSON.stringify(datafromLS.Medicine[i]); 
+            if (i != datafromLS.Medicine.length - 1){
+                dataList += ",";
+            }
+        }
+    }
+}
+JSONsaveMedicineList(dataList);
     </script>
     
     </div>
