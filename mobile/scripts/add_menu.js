@@ -21,11 +21,15 @@ $(document).ready(function () {
 function scanResult(value) {
   // await getTemplate(value);
   alert(`this is the scan result [${value}]`);
-  if(confirm(getId(value))){
-    console.log("good");
-  }else {
-    console.log("cancel");
-  }
+  getId(value)
+  .then((template) => {
+    if(confirm(template.Name)){
+      console.log("good");
+    }else {
+      console.log("cancel");
+    }
+
+  })
 // async function scanResult(value) {
 //   try {
 //     const template = await getId(value);
