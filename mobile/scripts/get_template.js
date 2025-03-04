@@ -3,27 +3,40 @@ const serverURL = "https://project-noticine-backend.vercel.app";
 function getTemplate(id) {
   const url = `${serverURL}/getTemplate/${id}`;
   const data = fetch(url) //1
-  .then((response) => response.json()) //2
-  .then((user) => {
-   return user; //3
-  });
+    .then((response) => response.json()) //2
+    .then((user) => {
+      return user; //3
+    });
   let dataToStorage = () => {
     data.then((a) => {
       console.log("1");
-      localStorage.setItem("getTemplate", JSON.stringify(a))
-    })
+      localStorage.setItem("getTemplate", JSON.stringify(a));
+      if (localStorage.getItem("getTemplate")) {
+        window.location.href = "scan_template.html";
+
+        // setTemplate();
+      }
+    });
   };
-  dataToStorage()
+  dataToStorage();
 }
 
-
-function setTemplate(id) {
-  let template = getTemplate(id);
-  alert(template);
-  //   let today = new Date();
-  //   $("#title").text(template.Name);
-  //   $("#description").text(template.Description);
-  //   $("#medicine-detail-template").append(medicineDetailTemplate());
+function setTemplate() {
+  let templatedata = localStorage.getItem("getTemplate");
+  templatedata = JSON.parse(templatedata);
+  console.log(templatedata)
+  console.log(templatedata.Name)
+  console.log(templatedata.medications[0])
+  
+  let today = new Date();
+  // let 
+  $("#title").text(templatedata.Name);
+  $("#description").text(templatedata.Description);
+  let qwer = "";
+  templatedata.medications.forEach(e => {
+    medicineDetailTemplate(e.Name,e.note,e.frequency,e.duration,e.times,e.Unit,)
+  })
+  $("#medicine-detail-template").append(medicineDetailTemplate());
 }
 
 function cancelTemplate() {
