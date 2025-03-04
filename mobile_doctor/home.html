@@ -85,7 +85,7 @@
     <script src="./scripts/template_functions.js"></script>
     <script src="./scripts/notification_card.js"></script>
     <script type="module">
-      localStorage.setItem("Medicine", JSON.stringify(JSON.stringify([])));
+localStorage.setItem("Medicine", '{"Medicine":[{\n      "medicine_name": "123123",\n      "time_dose": [\n        {"time": "14:06", "dose": "1 pill"}\n      ],\n      "frequency": "Everyday",\n      "duration": "For a full course",\n      "note": "",\n      "image": "http://127.0.0.1:5501/images/add_image.png",\n      "Start_date": "4 3 2025"\n    }]}')
       const create_template_button = document.getElementById("create-template-button");
       create_template_button.addEventListener("click", () => {
         window.location.href = "./create_template.html";
