@@ -10,22 +10,37 @@ $(document).ready(function () {
     $("#add-button").toggleClass("open");
   });
 
-  $("#scan-template").click(function () {
-    // if (AppInventor) {
-    //   AppInventor.setWebViewString("scan");
-    // }
-    scanResult("1000");
+  $("#scan-template").click(async function () {
+    if (AppInventor) {
+      AppInventor.setWebViewString("scan");
+    }
+    // await scanResult("1000");
   });
 });
 
 function scanResult(value) {
-  // getTemplate(value);
-  alert(`this is the scan result [${value}]`);
-  if(confirm(getTemplate(value))){
-    console.log("good");
-  }else {
-    console.log("cancel");
-  }
+  // alert(value)
+  // await getTemplate(value);
+
+  getTemplate(value);
+
+  // getId(value)
+  // .then((template) => {
+  //   // alert(`this is the scan result [${value}]`);
+  //   if (template.message) {
+  //     alert(template.message);
+  //     throw new Error(template.message);
+  //   }
+  //   if(confirm(template.Name)){
+  //     console.log("good");
+  //     alert(template.Name);
+  //     localStorage.setItem("getTemplate", JSON.stringify(template))
+  //   }else {
+  //     console.log("cancel");
+  //     alert("cancel");
+  //   }
+  // })
+  
 // async function scanResult(value) {
 //   try {
 //     const template = await getId(value);
