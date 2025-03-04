@@ -9,7 +9,7 @@ function getTemplate(id) {
   });
   let dataToStorage = () => {
     data.then((a) => {
-      console.log("1");
+      alert(a)
       localStorage.setItem("getTemplate", JSON.stringify(a))
     })
   };

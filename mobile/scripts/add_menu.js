@@ -21,21 +21,25 @@ $(document).ready(function () {
 function scanResult(value) {
   // alert(value)
   // await getTemplate(value);
-  getId(value)
-  .then((template) => {
-    // alert(`this is the scan result [${value}]`);
-    if (template.message) {
-      alert(template.message);
-      throw new Error(template.message);
-    }
-    if(confirm(template.Name)){
-      console.log("good");
-      alert(template.Name);
-    }else {
-      console.log("cancel");
-      alert("cancel");
-    }
-  })
+
+  getTemplate(value);
+
+  // getId(value)
+  // .then((template) => {
+  //   // alert(`this is the scan result [${value}]`);
+  //   if (template.message) {
+  //     alert(template.message);
+  //     throw new Error(template.message);
+  //   }
+  //   if(confirm(template.Name)){
+  //     console.log("good");
+  //     alert(template.Name);
+  //     localStorage.setItem("getTemplate", JSON.stringify(template))
+  //   }else {
+  //     console.log("cancel");
+  //     alert("cancel");
+  //   }
+  // })
   
 // async function scanResult(value) {
 //   try {
