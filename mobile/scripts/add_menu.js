@@ -23,16 +23,18 @@ function scanResult(value) {
   getId(value)
   .then((template) => {
     alert(`this is the scan result [${value}]`);
+    if (template.message) {
+      alert(template.message);
+      throw new Error(template.message);
+    }
     if(confirm(template.Name)){
       console.log("good");
+      alert(template.Name);
     }else {
       console.log("cancel");
+      alert("cancel");
     }
-
   })
-  .error(
-    alert("Scan failed");
-  );
   
 // async function scanResult(value) {
 //   try {
