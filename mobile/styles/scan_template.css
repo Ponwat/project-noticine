@@ -1,13 +1,17 @@
-#Template {
-    display: none;
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding-top: 36vh;
 }
+
 
 #text-bar {
     top: 0;
-    position: sticky;
+    position: fixed;
     display: flex;
     background-color: var(--color-main);
-    /* height: 100vh; */
+    height: 35vh;
     width: 100%;
     border-radius: 0 0 15px 15px;
     align-items: center;
@@ -71,7 +75,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: sticky;
     gap: 1vh;
     padding-bottom: 5vh;
 }

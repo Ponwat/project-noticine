@@ -11,9 +11,10 @@ $(document).ready(function () {
   });
 
   $("#scan-template").click(async function () {
-    if (AppInventor) {
-      AppInventor.setWebViewString("scan");
-    }
+    // if (AppInventor) {
+    //   AppInventor.setWebViewString("scan");
+    // }
+    scanResult("1000")
     // await scanResult("1000");
   });
 });

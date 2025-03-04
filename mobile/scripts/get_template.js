@@ -29,14 +29,14 @@ function setTemplate() {
   console.log(templatedata.medications[0])
   
   let today = new Date();
-  // let 
+  let date = `${today.getDate()} ${today.getMonth() + 1} ${today.getFullYear()}`;
   $("#title").text(templatedata.Name);
   $("#description").text(templatedata.Description);
   let qwer = "";
   templatedata.medications.forEach(e => {
-    medicineDetailTemplate(e.Name,e.note,e.frequency,e.duration,e.times,e.Unit,)
+    qwer += medicineDetailTemplate(e.Name,e.note,e.frequency,e.duration,e.times,e.Unit,date);
   })
-  $("#medicine-detail-template").append(medicineDetailTemplate());
+  $("#medicine-detail-template").append(qwer);
 }
 
 function cancelTemplate() {
