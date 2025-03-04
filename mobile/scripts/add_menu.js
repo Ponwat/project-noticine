@@ -18,7 +18,18 @@ $(document).ready(function () {
 });
 
 async function scanResult(value) {
-  const template = await getId(value);
+  try {
+    const template = await getId(value);
+    if (template.message) {
+      alert(template.message);
+      throw new Error(template.message);
+    }
+    template.medications.forEach(medication => {
+      alert(medication.Name)
+    });
+  } catch {
+    alert("Scan failed");
+  }
   alert(template.Name);
   // alert(`this is the scan result [${value}]`);
 }
