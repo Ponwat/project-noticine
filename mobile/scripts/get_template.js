@@ -21,21 +21,43 @@ function getTemplate(id) {
   dataToStorage();
 }
 
+function JSONsaveMedicineList(data) {
+    // let data_medicine_list = `{"medicine-list": [${data}]}`;
+    let data_medicine_list = "";
+    // console.log(dataList["Medicine"]);
+    if (dataList === "") {
+        data_medicine_list = `{"Medicine":[${data}]}`;
+    }else {
+        data_medicine_list = `{"Medicine":[${dataList},${data}]}`;
+    }
+    localStorage.setItem("Medicine", data_medicine_list);
+}
+
 function setTemplate() {
   let templatedata = localStorage.getItem("getTemplate");
   templatedata = JSON.parse(templatedata);
-  console.log(templatedata)
-  console.log(templatedata.Name)
-  console.log(templatedata.medications[0])
-  
+  console.log(templatedata);
+  console.log(templatedata.Name);
+  console.log(templatedata.medications[0]);
+
   let today = new Date();
-  let date = `${today.getDate()} ${today.getMonth() + 1} ${today.getFullYear()}`;
+  let date = `${today.getDate()} ${
+    today.getMonth() + 1
+  } ${today.getFullYear()}`;
   $("#title").text(templatedata.Name);
   $("#description").text(templatedata.Description);
   let qwer = "";
-  templatedata.medications.forEach(e => {
-    qwer += medicineDetailTemplate(e.Name,e.note,e.frequency,e.duration,e.times,e.Unit,date);
-  })
+  templatedata.medications.forEach((e) => {
+    qwer += medicineDetailTemplate(
+      e.Name,
+      e.note,
+      e.frequency,
+      e.duration,
+      e.times,
+      e.Unit,
+      date
+    );
+  });
   $("#medicine-detail-template").append(qwer);
 }
 
@@ -43,7 +65,61 @@ function cancelTemplate() {
   window.location.href = "home.html";
 }
 
+let dataList = "";
+
 function saveTemplate() {
+  let today = new Date();
+  let mydata = [];
+  template = JSON.parse(localStorage.getItem("getTemplate"));
+  template.medications.forEach((element) => {
+    let medName = element.Name;
+    let unit = element.Unit;
+    let timeList = element.times;
+    let frequency = element.frequency;
+    let duration = element.duration;
+    let note = element.note;
+
+    if (
+      medName === "" ||
+      unit === "" ||
+      timeList.length === 0 ||
+      frequency === "" ||
+      duration === ""
+    ) {
+      alert("Please fill in all fields before saving.");
+      return;
+    }
+
+    let timeDoseList = element.times;
+    // for (let item of timeList) {
+    //   let time = item.querySelector(".time").textContent;
+    //   let dose = item.querySelector(".dose").textContent;
+    //   timeDoseList.push({ time, dose });
+    // }
+    data = `{
+      "medicine_name": "${medName}",
+      "time_dose": [
+        ${timeDoseList
+          .map((item) => `{"time": "${item.time}", "dose": "${item.dose}"}`)
+          .join(",")}
+      ],
+      "frequency": "${frequency}",
+      "duration": "${duration}",
+      "note": "${note}",
+      "image": "${"/icons/pill.svg"}",
+      "Start_date": "${today.getDate()} ${
+      today.getMonth() + 1
+    } ${today.getFullYear()}"
+    }`;
+
+    localStorage.setItem(medName, "false");
+    mydata.push(data);
+    // localStorage.setItem("Medicine", data);
+
+  });
+  JSONsaveMedicineList(mydata.join(","));
+
+    alert("Data saved successfully!");
   window.location.href = "home.html";
 }
 
