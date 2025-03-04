@@ -351,10 +351,13 @@ function saveData() {
     }`;
 
     JSONsaveMedicineList(data);
-    // localStorage.setItem("Medicine", data);
-    alert("Data saved successfully!");
+    localStorage.setItem("Medicine", data);
+    // alert("Data saved successfully!");
 
     if (id) {
+        localStorage.setItem("addMedicine", JSON.stringify(data));
+        console.log(data);
+        // alert("data saved")
         window.location.href = "./template.html?id=" + id;
         return;
     }
