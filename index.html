@@ -19,6 +19,11 @@
         </a>
     </div>
     <script src="script.js"></script>
+    <script>
+    if (localStorage.getItem("Medicine") === null) {
+      localStorage.setItem("Medicine", JSON.stringify(JSON.stringify([])));
+    }
+    </script>
     
     </div>
 </body>
