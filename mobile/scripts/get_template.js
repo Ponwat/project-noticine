@@ -3,17 +3,21 @@ const serverURL = "https://project-noticine-backend.vercel.app";
 function getTemplate(id) {
   const url = `${serverURL}/getTemplate/${id}`;
   const data = fetch(url) //1
-  .then((response) => response.json()) //2
-  .then((user) => {
-   return user; //3
-  });
-  let dataToStorage = () => {
-    data.then((a) => {
-      alert(a)
-      localStorage.setItem("getTemplate", JSON.stringify(a))
-    })
-  };
-  dataToStorage()
+  .then((response) => 
+    // response.json()
+    alert(response)
+  ) //2
+  // .then(() => {
+
+  //  return user; //3
+  // });
+  // let dataToStorage = () => {
+  //   data.then((a) => {
+  //     alert(a)
+  //     localStorage.setItem("getTemplate", JSON.stringify(a))
+  //   })
+  // };
+  // dataToStorage()
 }
 
 
