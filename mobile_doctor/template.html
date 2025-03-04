@@ -72,7 +72,12 @@
         document.querySelector(".title").textContent = template.Name;
         document.querySelector(".description").textContent = template.Description;
 
-        const medicine = JSON.parse(JSON.parse(localStorage.getItem("Medicine")));
+        var  medicine = null;
+        try {
+            medicine = JSON.parse(JSON.parse(localStorage.getItem("Medicine")));
+        } catch (error) {
+            console.log(error);
+        }
         if (medicine["medicine-name"] != null) {
             // const frequencyMap = (input) => {
             //     if (input === "Everyday") return 1;
