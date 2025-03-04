@@ -14,14 +14,14 @@ $(document).ready(function () {
     // if (AppInventor) {
     //   AppInventor.setWebViewString("scan");
     // }
-    await scanResult("1000");
+    // await scanResult("1000");
   });
 });
 
 async function scanResult(value) {
-  // getTemplate(value);
+  // await getTemplate(value);
   alert(`this is the scan result [${value}]`);
-  if(confirm(getTemplate(value))){
+  if(confirm(await getTemplate(value))){
     console.log("good");
   }else {
     console.log("cancel");
