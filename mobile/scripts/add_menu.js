@@ -20,9 +20,9 @@ $(document).ready(function () {
 
 function scanResult(value) {
   // await getTemplate(value);
-  alert(`this is the scan result [${value}]`);
   getId(value)
   .then((template) => {
+    alert(`this is the scan result [${value}]`);
     if(confirm(template.Name)){
       console.log("good");
     }else {
