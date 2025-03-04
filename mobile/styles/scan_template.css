@@ -1,0 +1,162 @@
+#Template {
+    display: none;
+}
+
+#text-bar {
+    top: 0;
+    position: sticky;
+    display: flex;
+    background-color: var(--color-main);
+    /* height: 100vh; */
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+#text-bar > .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    height: 90%;
+    width: 90%;
+    max-width: 500px;
+    color: var(--color-white);
+}
+
+#text-bar > .inner > hr {
+    height: 2px;
+    border: none;
+    border-radius: 1px;
+    background-color: var(--color-grey);
+}
+
+#text-bar > .inner > .title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#text-bar > .inner > .description {
+    height: 100%;
+}
+
+#text-bar > .inner > .button-group {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#text-bar > .inner > .button-group > button {
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#text-bar > .inner > .button-group > .save {
+    background-color: var(--color-green);
+}
+
+#text-bar > .inner > .button-group > .cancel {
+    background-color: var(--color-red);
+}
+
+#medicine-detail-template {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    gap: 1vh;
+    padding-bottom: 5vh;
+}
+
+
+#medicine-detail-template > .medicine-detail {
+    background-color: var(--color-white);
+    width: 95vw;
+    max-width: 400px;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+    border: var(--color-secondary) 2px solid;
+    border-radius: 15px;
+}
+
+#medicine-detail-template > .medicine-detail > hr {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-main);
+    border: none;
+    margin: 5px 0;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block {
+    display: flex;
+    flex-direction: row;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .medicine-img{
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    border: var(--color-secondary) 2px solid;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .title {
+    color: var(--color-secondary);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .row {
+    font-size: 14px;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .row > .column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 5px;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .row > .title-label {
+    color: var(--color-main);
+    font-size: 12px;
+    font-weight: 600;
+
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .row > .normal-text {
+    color: var(--color-black);
+    font-weight: 500;
+}
+
+#medicine-detail-template > .medicine-detail > .info-block > .info > .row > .column > .block-text {
+    width: fit-content;
+    height: 21px;
+    padding: 0 4px;
+    border-radius: 5px;
+    background-color: var(--color-main);
+    color: var(--color-white);
+    font-weight: 600;
+}

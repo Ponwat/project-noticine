@@ -10,15 +10,22 @@ $(document).ready(function () {
     $("#add-button").toggleClass("open");
   });
 
-  $("#scan-template").click(function () { 
-    if (AppInventor) {
-      AppInventor.setWebViewString("scan");
-    }
-  })
+  $("#scan-template").click(function () {
+    // if (AppInventor) {
+    //   AppInventor.setWebViewString("scan");
+    // }
+    scanResult("1000");
+  });
 });
 
 function scanResult(value) {
-    alert(`this is the scan result [${value}]`);
+  // getTemplate(value);
+  alert(`this is the scan result [${value}]`);
+  if(confirm(getTemplate(value))){
+    console.log("good");
+  }else {
+    console.log("cancel");
+  }
 }
 
 function AddMedicine() {

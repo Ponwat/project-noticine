@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- import -->
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <!-- /import -->
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/all_style.css">
+    <link rel="stylesheet" href="./styles/variables.css">
+
+    
+    <link rel="stylesheet" href="./styles/scan_template.css">
+    <link rel="stylesheet" href="./styles/content_section.css">
+    <link rel="stylesheet" href="./styles/notification_card.css">
+    <link rel="stylesheet" href="./styles/date_selection.css">
+    <link rel="stylesheet" href="./styles/notification_content.css">
+    <link rel="stylesheet" href="./styles/add_menu.css">
+    <link rel="stylesheet" href="./styles/medicine_detail.css">
+    <!-- /styles -->
+
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- /script -->
+
+    <title>Noticine</title>
+</head>
+
+<body>
+    <!-- title-bar -->
+    <div id="text-bar">
+        <div class="inner">
+            <div class="title" id="title">title</div>
+            <div class="description">Description: <span id="description"></span></div>
+            <hr>
+            <div class="button-group">
+                <button class="cancel" id="cancel" onclick="cancelTemplate()">Cancel</button>
+                <button class="save" id="save" onclick="saveTemplate()">Save</button>
+            </div>
+        </div>
+    </div>
+    <!-- /title-bar -->
+    <!-- medicine-detail-template -->
+    <div id="medicine-detail-template" >
+        
+    </div>
+    <!-- /medicine-detail-template -->
+    <!-- script -->
+    <script src="./scripts/add_menu.js"></script>
+    <script src="./scripts/medicine_detail.js"></script>
+    <!-- <script src="./scripts/add_medicine.js"></script> -->
+    <script src="./scripts/get_template.js"></script>
+    <!-- /script -->
+
+</body>
+
+</html>
