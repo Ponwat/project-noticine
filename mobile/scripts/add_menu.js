@@ -18,10 +18,10 @@ $(document).ready(function () {
   });
 });
 
-async function scanResult(value) {
+function scanResult(value) {
   // await getTemplate(value);
   alert(`this is the scan result [${value}]`);
-  if(confirm(await getTemplate(value))){
+  if(confirm(getId(value))){
     console.log("good");
   }else {
     console.log("cancel");
